@@ -1,0 +1,18 @@
+{ 
+  "Dashboards": "Home",
+  "Send Message": "Kirim Pesan",
+  "Text Message": "Pesan Teks",
+  "Media Message": "Pesan Media",
+  "Button Message": "Pesan Button",
+  "Contacts": "Kontak",
+  "Users": "Pengguna",
+  "Server": "Server",
+  "Settings": "Pengaturan",
+  "Help": "Bantuan",
+  "FAQ": "FAQ",
+  "Log Out": "Keluar",
+  "My Profile": "Profile",
+  "Scheduling": "Terjadwal",
+  "Broadcast": "Siaran",
+  "Documentation": "Panduan"
+}
