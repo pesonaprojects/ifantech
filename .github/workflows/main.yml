@@ -1,19 +1,20 @@
-on: [push]
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-    deploy_job:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-    name: deploy
     steps:
-        - name: Checkout
-        uses: pesonaprojects/ifantech
-        - name: Deploy file
-        uses: pesonaprojects/ifantech
-        with:
-            username: root
-            server: 89.117.54.16
-            port: 22
-            local_path: './static/*'
-            remote_path: '/www/wwwroot/waapi.es'
-            sftp_only: true
-            password: nfoiXN26lV593I5S4MKQfvnO68
+    - name: 🚚 Get latest code
+      uses: pesonaprojects/ifantech
+    
+    - name: 📂 Sync files
+      uses: pesonaprojects/ifantech
+      with:
+        username: root
+        server: 89.117.54.16
+        port: 22
+        local_path: './static/*'
+        remote_path: '/www/wwwroot/waapi.es'
+        sftp_only: true
+        password: nfoiXN26lV593I5S4MKQfvnO68
