@@ -4,6 +4,7 @@
   "Text Message": "Pesan Teks",
   "Media Message": "Pesan Media",
   "Button Message": "Pesan Button",
+  "Location Message": "Pesan Lokasi",
   "Contacts": "Kontak",
   "Users": "Pengguna",
   "Server": "Server",
@@ -14,5 +15,6 @@
   "My Profile": "Profile",
   "Scheduling": "Terjadwal",
   "Broadcast": "Siaran",
+  "Send Location": "Kirim Lokasi",
   "Documentation": "Panduan"
 }

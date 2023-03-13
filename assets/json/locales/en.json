@@ -4,6 +4,7 @@
   "Text Message": "Text Message",
   "Media Message": "Media Message",
   "Button Message": "Button Message",
+  "Location Message": "Location Message",
   "Contacts": "Contacts",
   "Users": "Users",
   "Server": "Server",
@@ -14,5 +15,6 @@
   "My Profile": "My Profile",
   "Scheduling": "Scheduling",
   "Broadcast": "Broadcast",
+  "Send Location": "Send Location",
   "Documentation": "Documentation"
 }
