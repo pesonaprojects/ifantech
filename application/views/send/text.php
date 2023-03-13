@@ -10,7 +10,7 @@ data-template="vertical-menu-template-no-customizer"
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title><?=$title?></title>
+    <title data-i18n="Send Text">Send Text</title>
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="<?=base_url().'assets/img/favicon/favicon.ico'?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -147,14 +147,24 @@ data-template="vertical-menu-template-no-customizer"
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header">Send Text</h5>
+                                    <h5 class="card-header" data-i18n="Send Text">Send Text</h5>
                                     <div class="card-body">
                                         <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
+                                            <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
                                             <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
+                                                Please Use Country Code
                                             </div>
+                                        </div>
+                                        <div>
+                                            <label for="defaultFormControlInput" class="form-label">Message</label>
+                                            <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                        </div>
+                                        <br>
+                                        <div>
+                                            <button type="button" class="btn rounded-pill btn-primary">
+                                                <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -184,6 +194,8 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/autosize/autosize.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'assets/js/forms-extras.js'?>"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ data-template="vertical-menu-template-no-customizer"
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title><?=$title?></title>
+    <title data-i18n="Send Location">Send Location</title>
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="<?=base_url().'assets/img/favicon/favicon.ico'?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -38,7 +38,7 @@ data-template="vertical-menu-template-no-customizer"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
     <style>
-        #node1Map { height: 260px; }
+        #node1Map { height: 350px; }
     </style>
 </head>
 <body>
@@ -163,7 +163,7 @@ data-template="vertical-menu-template-no-customizer"
                                             <label for="defaultFormControlInput" class="form-label">Phone</label>
                                             <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
                                             <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
+                                                Please Use Country Code
                                             </div>
                                         </div>
                                         <div>
@@ -174,7 +174,9 @@ data-template="vertical-menu-template-no-customizer"
                                             </div>
                                         </div>
                                         <div>
-                                            <button>Send</button>
+                                            <button type="button" class="btn rounded-pill btn-primary">
+                                                <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
