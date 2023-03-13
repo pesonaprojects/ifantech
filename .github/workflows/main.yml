@@ -13,7 +13,7 @@ jobs:
     environment: production
     steps:
     - name: 📂 Sync files
-      uses: pesonaprojects/ifantech
+      uses: pesonaprojects/ifantech@v1
       with:
         username: root
         server: 89.117.54.16
