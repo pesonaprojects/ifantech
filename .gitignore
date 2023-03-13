@@ -8,6 +8,7 @@ application/logs/*
 
 application/ci_sessions/*
 !application/*/.htaccess
+.htaccess
 
 composer.lock
 
