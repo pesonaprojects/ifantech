@@ -10,7 +10,6 @@ class Broadcast extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['title'] = "Broadcast";
-		$this->load->view('dash/broadcast',$data);
+		$this->load->view('dash/broadcast');
 	}
 }
