@@ -165,9 +165,23 @@ data-template="vertical-menu-template-no-customizer"
                                             </div>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
-                                                    <h4 class="card-title">Special active title</h4>
-                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                                    <a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>
+                                                    <div>
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="defaultFormControlInput" class="form-label">Caption</label>
+                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                    </div>
+                                                    <br>
+                                                    <div>
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
                                                     <h4 class="card-title">Special link title</h4>
