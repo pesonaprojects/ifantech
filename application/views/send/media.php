@@ -149,56 +149,33 @@ data-template="vertical-menu-template-no-customizer"
                                 <div class="card mb-4">
                                     <h5 class="card-header" data-i18n="Send media">Send Media</h5>
                                     <div class="card-body">
-                                        <div class="col-xl-6">
-                  <h6 class="text-muted">Within cards</h6>
-                  <div class="card shadow-none text-center border mb-3">
-                    <div class="card-header border-bottom">
-                      <ul class="nav nav-tabs card-header-tabs" role="tablist">
-                        <li class="nav-item">
-                          <button
-                            type="button"
-                            class="nav-link active"
-                            role="tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#navs-within-card-active"
-                            aria-controls="navs-within-card-active"
-                            aria-selected="true"
-                          >
-                            Active
-                          </button>
-                        </li>
-                        <li class="nav-item">
-                          <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-link" aria-controls="navs-within-card-link" aria-selected="false">
-                            Link
-                          </button>
-                        </li>
-                        <li class="nav-item">
-                          <button
-                            type="button"
-                            class="nav-link disabled"
-                            data-bs-toggle="tab"
-                            role="tab"
-                            aria-selected="false"
-                          >
-                            Disabled
-                          </button>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="tab-content">
-                      <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
-                        <h4 class="card-title">Special active title</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                      <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
-                        <h4 class="card-title">Special link title</h4>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="javascript:void(0)" class="btn btn-secondary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                                        <div class="card shadow-none text-center border mb-3">
+                                            <div class="card-header border-bottom">
+                                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-active" aria-controls="navs-within-card-active" aria-selected="true">Image</button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-within-card-link" aria-controls="navs-within-card-link" aria-selected="false">Document</button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link disabled" data-bs-toggle="tab" role="tab" aria-selected="false">Video</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
+                                                    <h4 class="card-title">Special active title</h4>
+                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                    <a href="javascript:void(0)" class="btn btn-primary">Go somewhere</a>
+                                                </div>
+                                                <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
+                                                    <h4 class="card-title">Special link title</h4>
+                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                                    <a href="javascript:void(0)" class="btn btn-secondary">Go somewhere</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
