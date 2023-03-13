@@ -1,17 +1,21 @@
+name: Update Waapi.ex
 on:
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize, closed]
+  push:
+    branches:
+      - master
 jobs:
-  pull-request:
+  cd:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        repository: "pesonaprojects/ifantech"
-    - name: pull-request
-      uses: repo-sync/pull-request@v2
-      with:
-        destination_branch: "master"
-        github_token: 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
-        destination_repository: "/www/wwwroot/waapi.es"
+      - uses: actions/checkout@v2
+      - name: Deploy Using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /www/wwwroot/waapi.es
+            git pull origin master
+            git status
