@@ -1,14 +1,13 @@
-on:
-  pull_request:
-    branches: [master]
-    types: [opened, synchronize, closed]
 jobs:
-  build:
+  pull-request:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Checkout private tools
-        with:
-          repository: pesonaprojects/ifantech
-          token: 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
-          path: /www/wwwroot/waapi.es
+    - uses: actions/checkout@v2
+      with:
+        repository: "pesonaprojects/ifantech"
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "master"
+        github_token: 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
+        destination_repository: "/www/wwwroot/waapi.es"
