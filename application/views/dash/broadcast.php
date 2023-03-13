@@ -10,7 +10,7 @@ data-template="vertical-menu-template-no-customizer"
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title><?=$title?></title>
+    <title data-i18n="Broadcast"><?=$title?></title>
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="<?=base_url().'assets/img/favicon/favicon.ico'?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
