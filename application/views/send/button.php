@@ -147,13 +147,166 @@ data-template="vertical-menu-template-no-customizer"
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header">Send Button</h5>
+                                    <h5 class="card-header" data-i18n="Send Button">Send Button</h5>
                                     <div class="card-body">
-                                        <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
+                                        <div class="card shadow-none text-center border mb-3">
+                                            <div class="card-header border-bottom">
+                                                <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#button-list" aria-controls="button-list" aria-selected="true">Button List</button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#button-respons" aria-controls="button-respons" aria-selected="false">Button Respons</button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#button-copy" aria-controls="button-copy" aria-selected="false">Button Copy</button>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#button-link" aria-controls="button-link" aria-selected="false">Button Link</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade show active" id="button-list" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Button Title</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Text</label>
+                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Title</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Respons</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="button-respons" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Text</label>
+                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Title</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Respons</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="button-copy" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Text</label>
+                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Button</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Text Copy</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="button-link" role="tabpanel">
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Text</label>
+                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Button</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+                                                            <label class="form-label" for="creditCardMask">Link</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

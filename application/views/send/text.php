@@ -149,19 +149,18 @@ data-template="vertical-menu-template-no-customizer"
                                 <div class="card mb-4">
                                     <h5 class="card-header" data-i18n="Send Text">Send Text</h5>
                                     <div class="card-body">
-                                        <div>
+                                        <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">Phone</label>
                                             <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
                                             <div id="defaultFormControlHelp" class="form-text">
                                                 Please Use Country Code
                                             </div>
                                         </div>
-                                        <div>
+                                        <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">Message</label>
                                             <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
                                         </div>
-                                        <br>
-                                        <div>
+                                        <div class="mb-3">
                                             <button type="button" class="btn rounded-pill btn-primary">
                                                 <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                             </button>

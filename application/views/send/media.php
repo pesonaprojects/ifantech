@@ -147,7 +147,7 @@ data-template="vertical-menu-template-no-customizer"
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card mb-4">
-                                    <h5 class="card-header" data-i18n="Send media">Send Media</h5>
+                                    <h5 class="card-header" data-i18n="Send Media">Send Media</h5>
                                     <div class="card-body">
                                         <div class="card shadow-none text-center border mb-3">
                                             <div class="card-header border-bottom">
@@ -165,28 +165,44 @@ data-template="vertical-menu-template-no-customizer"
                                             </div>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
-                                                    <div>
+                                                    <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
                                                         <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
                                                         <div id="defaultFormControlHelp" class="form-text">
                                                             Please Use Country Code
                                                         </div>
                                                     </div>
-                                                    <div>
+                                                    <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Caption</label>
                                                         <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
                                                     </div>
-                                                    <br>
-                                                    <div>
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Image</label>
+                                                        <input class="form-control" type="file" id="formFile">
+                                                    </div>
+                                                    <div class="mb-3">
                                                         <button type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
-                                                    <h4 class="card-title">Special link title</h4>
-                                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                                    <a href="javascript:void(0)" class="btn btn-secondary">Go somewhere</a>
+                                                    <div class="mb-3">
+                                                        <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
+                                                        <div id="defaultFormControlHelp" class="form-text">
+                                                            Please Use Country Code
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="formFile" class="form-label">Document</label>
+                                                        <input class="form-control" type="file" id="formFile">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-send"></span>&nbsp; Send
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,13 +227,10 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/i18n/i18n.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/menu.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables/jquery.dataTables.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-responsive/datatables.responsive.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/autosize/autosize.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'assets/js/forms-extras.js'?>"></script>
 </body>
 </html>
