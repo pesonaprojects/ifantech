@@ -145,18 +145,34 @@ data-template="vertical-menu-template-no-customizer"
             	<div class="content-wrapper">
             		<div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header">Contact</h5>
-                                    <div class="card-body">
-                                        <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="col-lg-12 col-md-6 col-12 mb-4">
+                                <div class="card">
+                                    <table id="example" class="table table-striped" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Group</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>+628822777821</td>
+                                            <td>Team A</td>
+                                            <td><button></button></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Contact</th>
+                                            <th>Group</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                                 </div>
                             </div>
                         </div>
@@ -185,5 +201,10 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
 </body>
 </html>
