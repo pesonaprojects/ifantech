@@ -145,7 +145,7 @@ data-template="vertical-menu-template-no-customizer"
                             <div class="col-lg-4 col-md-6 col-12 mb-4">
                                 <div class="card h-100">
                                     <div class="card-header">
-                                        <h3 class="card-title mb-2">Congratulations John!</h3>
+                                        <h3 class="card-title mb-2">Congratulations Ifantech!</h3>
                                         <span class="d-block mb-4 text-nowrap">Best seller of the month</span>
                                     </div>
                                     <div class="card-body">
