@@ -7,6 +7,8 @@ application/logs/*
 !application/logs/index.html
 
 application/ci_sessions/*
+application/config/config.php
+application/config/database.php
 !application/*/.htaccess
 .htaccess
 
