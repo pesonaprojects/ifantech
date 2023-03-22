@@ -13,7 +13,7 @@ application/config/database.php
 .htaccess
 
 composer.lock
-# deploy.php
+deploy.php
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
