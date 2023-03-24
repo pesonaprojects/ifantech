@@ -7,6 +7,7 @@ class Documentation extends CI_Controller {
 	{
 		parent::__construct();
 		error_reporting(0);
+		cek_sesi();
 	}
 	public function index()
 	{

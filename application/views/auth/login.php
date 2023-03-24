@@ -28,6 +28,8 @@ data-template="vertical-menu-template-no-customizer"
 	<link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-auth.css'?>" />
 	<script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
 	<script src="<?=base_url().'assets/js/config.js'?>"></script>
+	<link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.css'?>">
+	<link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
 </head>
 <body>
 	<div class="container-xxl">
@@ -42,7 +44,7 @@ data-template="vertical-menu-template-no-customizer"
 						</div>
 						<h4 class="mb-2">Welcome to WAAPI.es!</h4>
 						<p class="mb-4">Please sign-in to your account and start the adventure</p>
-						<form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+						<form id="formAuthentication" class="mb-3" action="<?=site_url().'login/actions'?>" method="POST">
 							<div class="mb-3">
 								<label for="email" class="form-label">Username</label>
 								<input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus/>
@@ -55,7 +57,7 @@ data-template="vertical-menu-template-no-customizer"
 									</a>
 								</div>
 								<div class="input-group input-group-merge">
-									<input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password"/>
+									<input type="password" id="password" class="form-control" name="password" placeholder="············" aria-describedby="password"/>
 									<span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
 								</div>
 							</div>
@@ -91,5 +93,35 @@ data-template="vertical-menu-template-no-customizer"
 	<script src="<?=base_url().'assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js'?>"></script>
 	<script src="<?=base_url().'assets/js/main.js'?>"></script>
 	<script src="<?=base_url().'assets/js/pages-auth.js'?>"></script>
+	<script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
+	<script type="text/javascript">
+		toastr.options = {
+			"closeButton": true,
+			"debug": false,
+			"newestOnTop": false,
+			"progressBar": true,
+			"positionClass": "toast-top-right",
+			"preventDuplicates": false,
+			"onclick": null,
+			"showDuration": "300",
+			"hideDuration": "1000",
+			"timeOut": "5000",
+			"extendedTimeOut": "1000",
+			"showEasing": "swing",
+			"hideEasing": "linear",
+			"showMethod": "fadeIn",
+			"hideMethod": "fadeOut"
+		}
+		<?php 
+		if ($this->session->flashdata('success')) { ?>
+			toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+		<?php }elseif ($this->session->flashdata('info')) { ?>
+			toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+		<?php }elseif ($this->session->flashdata('warning')) { ?>
+			toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+		<?php }elseif ($this->session->flashdata('error')) { ?>
+			toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+		<?php } ?>
+	</script>
 </body>
 </html>
