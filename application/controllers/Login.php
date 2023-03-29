@@ -7,7 +7,7 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		error_reporting(0);
-		// cek_sesi_login();
+		cek_sesi_login();
 	}
 	function index()
 	{
@@ -28,11 +28,11 @@ class Login extends CI_Controller
 				'phone'  => $row->phone,
 				'role' => $row->role
 			));
-			$url = base_url().'';
+			$url = base_url().'home';
 			echo $this->session->set_flashdata('success','Welcome '.$row->username);
 			redirect($url);
 		}else{
-			$url = base_url().'login';
+			$url = base_url().'';
 			echo $this->session->set_flashdata('error','Username or password invalid');
 			redirect($url);
 		}

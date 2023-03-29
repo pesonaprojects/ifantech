@@ -9,9 +9,17 @@ class Admin extends CI_Controller {
 		error_reporting(0);
 		cek_sesi();
 	}
-	public function Settings()
+	public function settings()
 	{
 		$data['title'] = "Settings";
 		$this->load->view('admin/setting',$data);
+	}
+	public function users()
+	{
+		$this->load->view('admin/users');
+	}
+	public function server()
+	{
+		$this->load->view('admin/server');
 	}
 }
