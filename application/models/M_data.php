@@ -27,6 +27,11 @@ class M_data extends CI_Model
 		$result = $this->db->query("SELECT * FROM i_label WHERE userid='$userid'");
 		return $result;
 	}
+	function AllUsers()
+	{
+		$result = $this->db->query("SELECT * FROM i_users");
+		return $result;
+	}
 	function ContactByUser($userid)
 	{
 		$result = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid'");

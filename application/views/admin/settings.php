@@ -8,7 +8,7 @@ data-assets-path="<?=base_url().'assets/'?>"
 data-template="vertical-menu-template-no-customizer"
 >
 <head>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title><?=$title?></title>
     <meta name="description" content="" />
@@ -30,13 +30,11 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
-    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.css'?>">
-    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
 </head>
 <body>
-	<div class="layout-wrapper layout-content-navbar">
-		<div class="layout-container">
-			<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="index.html" class="app-brand-link">
                         <img width="150px" src="<?=base_url().'Waapi/waapi.es.png'?>">
@@ -109,19 +107,19 @@ data-template="vertical-menu-template-no-customizer"
                     </li>
                     <?php if ($this->session->userdata('role') == 1): ?>
                         <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                        <li class="menu-item active">
+                        <li class="menu-item">
                             <a href="<?=base_url().'admin/users'?>" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-user"></i>
                                 <div data-i18n="Users">Users</div>
                             </a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item ">
                             <a href="<?=base_url().'admin/server'?>" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-server"></i>
                                 <div data-i18n="Server">Server</div>
                             </a>
                         </li>
-                        <li class="menu-item">
+                        <li class="menu-item active">
                             <a href="<?=base_url().'admin/settings'?>" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-cog"></i>
                                 <div data-i18n="Settings">Settings</div>
@@ -131,114 +129,53 @@ data-template="vertical-menu-template-no-customizer"
                 </ul>
             </aside>
             <div class="layout-page">
-            	<nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-            		<div class="container-fluid">
-            			<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            				<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-            					<i class="bx bx-menu bx-sm"></i>
-            				</a>
-            			</div>
-            			<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            				<ul class="navbar-nav flex-row align-items-center ms-auto">
-            					<?php $this->load->view('options/locales') ?>
-            					<?php $this->load->view('options/userprofile') ?>
-            				</ul>
-            			</div>
-            		</div>
-            	</nav>
-            	<div class="content-wrapper">
-            		<div class="container-xxl flex-grow-1 container-p-y">
+                <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="container-fluid">
+                        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                                <i class="bx bx-menu bx-sm"></i>
+                            </a>
+                        </div>
+                        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                            <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                <?php $this->load->view('options/locales') ?>
+                                <?php $this->load->view('options/userprofile') ?>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-lg-12 col-md-6 col-12 mb-4">
-                                <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#AddUsers" aria-controls="AddUsers">Add Users</button>
-                                <div class="card">
-                                    <table id="example" class="table table-striped" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach($users->result() as $u): ?>
-                                            <tr>
-                                                <td><?=$u->fullname?></td>
-                                                <td>
-                                                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="<?=$u->fullname?>">
-                                                            <img src="<?=base_url().'assets/img/users/'.$u->image ?>" alt="Avatar" class="rounded-circle">
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                                <td><?=$u->email?></td>
-                                                <td><?=$u->phone?></td>
-                                                <td>
-                                                    <?php 
-                                                    if ($u->status == 1) { ?>
-                                                        <span class="badge bg-label-success me-1">Active</span>
-                                                    <?php }else{ ?>
-                                                        <span class="badge bg-label-error me-1">Nonaktif</span>
-                                                    <?php } ?>
-                                                </td>
-                                                <td><button></button></td>
-                                            </tr>
-                                        <?php endforeach;?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Image</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <h5 class="card-header">Settings</h5>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                                            <input class="form-control" type="file" id="formFileMultiple" multiple="">
+                                        </div>
+                                        <div>
+                                            <label for="defaultFormControlInput" class="form-label">Name</label>
+                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
+                                            <div id="defaultFormControlHelp" class="form-text">
+                                                We'll never share your details with anyone else.
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-            		</div>
-                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="AddUsers" aria-labelledby="offcanvasBothLabel">
-                        <div class="offcanvas-header">
-                            <h5 id="offcanvasBothLabel" class="offcanvas-title">Add Users</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body my-auto mx-0 flex-grow-0">
-                            <form action="<?=base_url().'admin/add_users'?>" method="POST">
-                                <div class="mb-3">
-                                    <label class="form-label">Fullname</label>
-                                    <input type="text" name="fullname" class="form-control" placeholder="Fullname"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone</label>
-                                    <input type="text" name="phone" class="form-control" placeholder="Phone"/>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary mb-2 d-grid w-100">Continue</button>
-                                    <button type="button" class="btn btn-label-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button>
-                                </div>
-                                
-                            </form>
-                        </div>
                     </div>
-            		<?php $this->load->view('options/footer') ?>
-            		<div class="content-backdrop fade"></div>
-            	</div>
+                    <?php $this->load->view('options/footer') ?>
+                    <div class="content-backdrop fade"></div>
+                </div>
             </div>
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
     </div>
-	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/bootstrap.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'?>"></script>
@@ -254,40 +191,5 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-    </script>
-    <script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
-    <script type="text/javascript">
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        <?php 
-        if ($this->session->flashdata('success')) { ?>
-            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
-        <?php }elseif ($this->session->flashdata('info')) { ?>
-            toastr.info("<?php echo $this->session->flashdata('info'); ?>");
-        <?php }elseif ($this->session->flashdata('warning')) { ?>
-            toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
-        <?php }elseif ($this->session->flashdata('error')) { ?>
-            toastr.error("<?php echo $this->session->flashdata('error'); ?>");
-        <?php } ?>
-    </script>
 </body>
 </html>
