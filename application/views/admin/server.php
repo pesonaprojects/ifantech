@@ -255,7 +255,7 @@ data-template="vertical-menu-template-no-customizer"
                         var html = '';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<a href="javascript:;" class="list-group-item list-group-item-action show" data="'+data[i].id+'"><i class="fas fa-server"></i> '+data[i].name+' <span class="badge bg-primary float-right">ON</span></a>';
+                            html += '<a href="javascript:;" class="list-group-item list-group-item-action show" data="'+data[i].id+'"><i class="fas fa-server"></i> '+data[i].name+' <span class="badge bg-primary float-right"></span></a>';
                         }
                         console.log(data)
                         $('#data_server').html(html);
