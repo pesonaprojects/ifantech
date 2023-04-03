@@ -10,7 +10,7 @@ data-template="vertical-menu-template-no-customizer"
 <head>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title data-i18n="Send Location">Send Location</title>
+    <title><?=$title?></title>
     <meta name="description" content="" />
     <link rel="icon" type="image/x-icon" href="<?=base_url().'assets/img/favicon/favicon.ico'?>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,19 +27,14 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/select2/select2.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/tagify/tagify.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    <!--leaflet js after leaflet css-->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
-    <style>
-        #node1Map { height: 350px; }
-    </style>
+    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.css'?>">
+    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -63,13 +58,13 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Dashboards">Dashboards</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="<?=base_url().'device'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-desktop"></i>
                             <div data-i18n="Device">Device</div>
                         </a>
                     </li>
-                    <li class="menu-item active open">
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-send"></i>
                             <div data-i18n="Send Message">Send Message</div>
@@ -90,7 +85,7 @@ data-template="vertical-menu-template-no-customizer"
                                     <div data-i18n="Button Message">Button Message</div>
                                 </a>
                             </li>
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <a href="<?=base_url().'send/location'?>" class="menu-link">
                                     <div data-i18n="Location Message">Location Message</div>
                                 </a>
@@ -161,34 +156,90 @@ data-template="vertical-menu-template-no-customizer"
             	<div class="content-wrapper">
             		<div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header" data-i18n="Send Location">Send Location</h5>
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                Please Use Country Code
+                            <div class="col-lg-12 col-md-6 col-12 mb-4">
+                                <div class="card">
+                                    <?php 
+                                    if ($device == 0) { ?>
+                                        <button type="button" class="btn btn-label-linkedin" data-bs-toggle="modal" data-bs-target="#add_contacts">
+                                            <i class="fas fa-1x fa-plus-circle text-wite"></i> Setup Device
+                                        </button>
+                                    <?php }else{ ?>
+                                        <center><h3>Detail Device</h3></center>
+                                    <?php }?>
+                                    <div class="modal fade" id="add_contacts" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel2">Setup Device</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="<?=base_url().'device/setup'?>" method="POST">
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <label class="form-label">Name</label>
+                                                                <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" name="name" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col mb-3">
+                                                                <label class="form-label">Webhook</label>
+                                                                <input type="url" id="nameSmall" class="form-control" placeholder="Webhook URL" name="webhook"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="defaultFormControlInput" class="form-label">Geolocation</label>
-                                            <div id="node1Map"></div>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                latitude: <span id="lat"></span> | longitude: <span id="lon"></span>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <button type="button" class="btn rounded-pill btn-primary">
-                                                <span class="tf-icons bx bx-send"></span>&nbsp; Send
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="card">
+                                    <table id="example" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Contact</th>
+                                                <th>Label</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    <td><?=$c->name?></td>
+                                                    <td><?=$c->contacts?></td>
+                                                    <td>
+                                                        <?php 
+                                                        $GetLabelName = $this->db->get_where('i_label', ['id' => $c->label])->row_array(); ?>
+                                                        <span class="badge rounded-pill bg-label-primary"><?=$GetLabelName['name']?></span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn rounded-pill btn-icon btn-label-primary" data-bs-toggle="modal" data-bs-target="#edit<?=$c->id?>">
+                                                            <span class="tf-icons bx bx-pencil"></span>
+                                                        </button>
+                                                        <button type="button" class="btn rounded-pill btn-icon btn-label-danger" data-bs-toggle="modal" data-bs-target="#hapus<?=$c->id?>">
+                                                            <span class="tf-icons bx bx-trash"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Contact</th>
+                                                <th>Label</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-            		</div>
+                    </div>
             		<?php $this->load->view('options/footer') ?>
             		<div class="content-backdrop fade"></div>
             	</div>
@@ -210,26 +261,45 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive/datatables.responsive.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/select2/select2.js'?>"></script>
+    <script src="<?=base_url().'assets/js/forms-selects.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
-    <script>
-        const mymap = L.map('node1Map').setView([-7.813044768423498, 110.37689208984376], 1);
-        const attribution ='Web Dev By &copy <a href="https://waapi.es/copyright">WAAPI.es</a>';
-        const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        const tiles = L.tileLayer(tileUrl, { attribution });
-        tiles.addTo(mymap);
-
-        var lat, lng;
-        var lat, lng, marker;
-        mymap.on("click", function (e) {
-            if (marker) mymap.removeLayer(marker);
-            lat = e.latlng.lat;
-            lng = e.latlng.lng;
-            console.log(lat);
-            console.log(lng);
-            marker = L.marker([lat, lng]).addTo(mymap);
-            document.getElementById("lat").textContent = lat;
-            document.getElementById("lon").textContent = lng;
+    <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
+    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable();
         });
+    </script>
+    <script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        <?php 
+        if ($this->session->flashdata('success')) { ?>
+            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+        <?php }elseif ($this->session->flashdata('info')) { ?>
+            toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+        <?php }elseif ($this->session->flashdata('warning')) { ?>
+            toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+        <?php }elseif ($this->session->flashdata('error')) { ?>
+            toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+        <?php } ?>
     </script>
 </body>
 </html>

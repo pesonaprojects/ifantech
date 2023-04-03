@@ -20,6 +20,11 @@ class M_data extends CI_Model
 		$result = $this->db->insert('i_server', $data);
 		return $result;
 	}
+	function SetupDevice($data)
+	{
+		$result = $this->db->insert('i_device', $data);
+		return $result;
+	}
 
 	//read
 	function LabelByUser($userid)
@@ -53,6 +58,13 @@ class M_data extends CI_Model
 		$result = $this->db->set($data);
 		$result = $this->db->where('id',$id);
 		$result = $this->db->update('i_contacts');
+		return $result;
+	}
+	function FinishSetup($userid)
+	{
+		$result = $this->db->set('device', 1);
+		$result = $this->db->where('id',$userid);
+		$result = $this->db->update('i_users');
 		return $result;
 	}
 

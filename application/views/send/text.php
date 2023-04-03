@@ -53,6 +53,12 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Dashboards">Dashboards</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="<?=base_url().'device'?>" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-desktop"></i>
+                            <div data-i18n="Device">Device</div>
+                        </a>
+                    </li>
                     <li class="menu-item active open">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-send"></i>

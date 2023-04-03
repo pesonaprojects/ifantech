@@ -54,6 +54,12 @@ data-template="vertical-menu-template-no-customizer"
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a href="<?=base_url().'device'?>" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-desktop"></i>
+                            <div data-i18n="Device">Device</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-send"></i>
                             <div data-i18n="Send Message">Send Message</div>
@@ -152,7 +158,7 @@ data-template="vertical-menu-template-no-customizer"
                                     <h5 class="card-header">Settings</h5>
                                     <div class="card-body">
                                         <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                                            <label for="formFileMultiple" class="form-label">Web Icon</label>
                                             <input class="form-control" type="file" id="formFileMultiple" multiple="">
                                         </div>
                                         <div>
