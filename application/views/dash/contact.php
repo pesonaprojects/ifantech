@@ -27,14 +27,13 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/select2/select2.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/select2/select2.css'?>"/>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/tagify/tagify.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
-    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.css'?>">
-    <link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -406,16 +405,17 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/select2/select2.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/tagify/tagify.js'?>"></script>
+    <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
     <script src="<?=base_url().'assets/js/forms-selects.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#example').DataTable();
         });
     </script>
-    <script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
     <script type="text/javascript">
         toastr.options = {
             "closeButton": true,

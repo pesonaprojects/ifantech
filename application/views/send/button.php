@@ -30,6 +30,7 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -111,25 +112,27 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Documentation">Documentation</div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/users'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/server'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-server"></i>
-                            <div data-i18n="Server">Server</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/settings'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-cog"></i>
-                            <div data-i18n="Settings">Settings</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('role') == 1): ?>
+                        <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
+                        <li class="menu-item active">
+                            <a href="<?=base_url().'admin/users'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/server'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-server"></i>
+                                <div data-i18n="Server">Server</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/settings'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-cog"></i>
+                                <div data-i18n="Settings">Settings</div>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </aside>
             <div class="layout-page">
@@ -176,10 +179,11 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade show active" id="button-list" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
-                                                        <div id="defaultFormControlHelp" class="form-text">
-                                                            Please Use Country Code
-                                                        </div>
+                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                            <?php foreach($contact->result() as $c): ?>
+                                                                <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
+                                                            <?php endforeach;?>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Button Title</label>
@@ -214,10 +218,11 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-respons" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
-                                                        <div id="defaultFormControlHelp" class="form-text">
-                                                            Please Use Country Code
-                                                        </div>
+                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                            <?php foreach($contact->result() as $c): ?>
+                                                                <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
+                                                            <?php endforeach;?>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
@@ -248,10 +253,11 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-copy" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
-                                                        <div id="defaultFormControlHelp" class="form-text">
-                                                            Please Use Country Code
-                                                        </div>
+                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                            <?php foreach($contact->result() as $c): ?>
+                                                                <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
+                                                            <?php endforeach;?>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
@@ -282,10 +288,11 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-link" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="+62 8*****" aria-describedby="defaultFormControlHelp"/>
-                                                        <div id="defaultFormControlHelp" class="form-text">
-                                                            Please Use Country Code
-                                                        </div>
+                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                            <?php foreach($contact->result() as $c): ?>
+                                                                <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
+                                                            <?php endforeach;?>
+                                                        </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
@@ -343,6 +350,6 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
 </body>
 </html>

@@ -28,8 +28,7 @@ data-template="vertical-menu-template-no-customizer"
 	<link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-auth.css'?>" />
 	<script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
 	<script src="<?=base_url().'assets/js/config.js'?>"></script>
-	<link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.css'?>">
-	<link rel="stylesheet" href="<?=base_url().'assets/toastr/toastr.min.css'?>">
+	<link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="container-xxl">
@@ -93,7 +92,7 @@ data-template="vertical-menu-template-no-customizer"
 	<script src="<?=base_url().'assets/vendor/libs/formvalidation/dist/js/plugins/AutoFocus.min.js'?>"></script>
 	<script src="<?=base_url().'assets/js/main.js'?>"></script>
 	<script src="<?=base_url().'assets/js/pages-auth.js'?>"></script>
-	<script src="<?=base_url().'assets/toastr/toastr.min.js'?>"></script>
+	<script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
 	<script type="text/javascript">
 		toastr.options = {
 			"closeButton": true,

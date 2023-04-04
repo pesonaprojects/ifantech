@@ -108,25 +108,27 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Documentation">Documentation</div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/users'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/server'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-server"></i>
-                            <div data-i18n="Server">Server</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/settings'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-cog"></i>
-                            <div data-i18n="Settings">Settings</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('role') == 1): ?>
+                        <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
+                        <li class="menu-item active">
+                            <a href="<?=base_url().'admin/users'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/server'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-server"></i>
+                                <div data-i18n="Server">Server</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/settings'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-cog"></i>
+                                <div data-i18n="Settings">Settings</div>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </aside>
             <div class="layout-page">

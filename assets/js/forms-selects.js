@@ -7,6 +7,7 @@
 $(function () {
   const selectPicker = $('.selectpicker'),
     select2 = $('.select2'),
+    select2 = $('.select3'),
     select2Icons = $('.select2-icons');
 
   // Bootstrap Select

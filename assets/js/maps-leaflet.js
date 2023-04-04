@@ -4431,8 +4431,8 @@
   // --------------------------------------------------------------------
   const dragMapVar = document.getElementById('dragMap');
   if (dragMapVar) {
-    const draggableMap = L.map('dragMap').setView([48.817152, 2.455], 12);
-    const markerLocation = L.marker([48.817152, 2.455], {
+    const draggableMap = L.map('dragMap').setView([-7.813044768423498, 110.37689208984376], 12);
+    const markerLocation = L.marker([-7.813044768423498, 110.37689208984376], {
       draggable: 'true'
     }).addTo(draggableMap);
     markerLocation.bindPopup("<b>You're here!</b>").openPopup();

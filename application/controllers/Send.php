@@ -12,21 +12,29 @@ class Send extends CI_Controller {
 	public function text()
 	{
 		$data['title'] = "Send Text";
+		$userid = $this->session->userdata('userid');
+		$data['contact'] = $this->m_data->ContactByUser($userid);
 		$this->load->view('send/text',$data);
 	}
 	public function media()
 	{
 		$data['title'] = "Send Media";
+		$userid = $this->session->userdata('userid');
+		$data['contact'] = $this->m_data->ContactByUser($userid);
 		$this->load->view('send/media',$data);
 	}
 	public function button()
 	{
 		$data['title'] = "Send Button";
+		$userid = $this->session->userdata('userid');
+		$data['contact'] = $this->m_data->ContactByUser($userid);
 		$this->load->view('send/button',$data);
 	}
 	public function location()
 	{
 		$data['title'] = "Send Location";
+		$userid = $this->session->userdata('userid');
+		$data['contact'] = $this->m_data->ContactByUser($userid);
 		$this->load->view('send/location',$data);
 	}
 }
