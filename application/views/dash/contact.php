@@ -27,8 +27,6 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/select2/select2.css'?>"/>
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/tagify/tagify.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
@@ -184,8 +182,7 @@ data-template="vertical-menu-template-no-customizer"
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <label for="select2Basic" class="form-label">Label</label>
-                                                                <select id="select2Basic" class="select2 form-select form-select" data-allow-clear="true" name="label">
-                                                                    <option value="">None</option>
+                                                                <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
                                                                     <?php foreach($label->result() as $lab): ?>
                                                                         <option value="<?=$lab->id?>"><?=$lab->name?></option>
                                                                     <?php endforeach;?>
@@ -404,8 +401,6 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive/datatables.responsive.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/select2/select2.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/tagify/tagify.js'?>"></script>
     <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
     <script src="<?=base_url().'assets/js/forms-selects.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>

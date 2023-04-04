@@ -30,6 +30,7 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -155,12 +156,13 @@ data-template="vertical-menu-template-no-customizer"
                                 <div class="card mb-4">
                                     <h5 class="card-header">Schedule</h5>
                                     <div class="card-body">
-                                        <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
-                                            </div>
+                                        <div class="mb-3">
+                                            <label for="defaultFormControlInput" class="form-label">Phone</label>
+                                            <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                <?php foreach($contact->result() as $c): ?>
+                                                    <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
+                                                <?php endforeach;?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -190,6 +192,6 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
 </body>
 </html>

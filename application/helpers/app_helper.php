@@ -29,8 +29,8 @@ if (!function_exists('hasPermission')) {
 		if (in_array($current, $arr)) {
 			return true;
 		} else {
-			echo $CI->session->set_flashdata('error','Anda Tidak Memiliki Akses ke halaman ini');
-			redirect('dashboard/home');
+			echo $CI->session->set_flashdata('error','You do not have access to this page');
+			redirect('home');
 		}
 	}
 }

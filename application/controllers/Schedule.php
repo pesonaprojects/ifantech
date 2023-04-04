@@ -12,6 +12,8 @@ class Schedule extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = "Schedule";
+		$userid = $this->session->userdata('userid');
+		$data['contact'] = $this->m_data->ContactByUser($userid);
 		$this->load->view('dash/schedule',$data);
 	}
 }

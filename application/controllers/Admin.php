@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		error_reporting(0);
 		cek_sesi();
+		hasPermission([1]);
 	}
 	public function settings()
 	{

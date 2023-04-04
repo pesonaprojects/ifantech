@@ -27,6 +27,7 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/apex-charts/apex-charts.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
     <div class="layout-wrapper layout-content-navbar">
@@ -234,5 +235,35 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/apex-charts/apexcharts.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/dashboards-ecommerce.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        <?php 
+        if ($this->session->flashdata('success')) { ?>
+            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
+        <?php }elseif ($this->session->flashdata('info')) { ?>
+            toastr.info("<?php echo $this->session->flashdata('info'); ?>");
+        <?php }elseif ($this->session->flashdata('warning')) { ?>
+            toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
+        <?php }elseif ($this->session->flashdata('error')) { ?>
+            toastr.error("<?php echo $this->session->flashdata('error'); ?>");
+        <?php } ?>
+    </script>
 </body>
 </html>
