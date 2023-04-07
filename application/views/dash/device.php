@@ -357,7 +357,7 @@ data-template="vertical-menu-template-no-customizer"
     <script>
         var server = "<?=$host?>";
         var id = "<?=$deviceid?>";
-        ws = new WebSocket(`wss://${server}?token=${id}`);
+        ws = new WebSocket(`ws://${server}?token=${id}`);
         ws.onopen = () => {
             console.log('connect')
             handle(ws)
