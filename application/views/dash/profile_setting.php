@@ -30,6 +30,7 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -87,7 +88,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>
@@ -111,25 +112,27 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Documentation">Documentation</div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/users'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/server'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-server"></i>
-                            <div data-i18n="Server">Server</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/settings'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-cog"></i>
-                            <div data-i18n="Settings">Settings</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('role') == 1): ?>
+                        <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
+                        <li class="menu-item active">
+                            <a href="<?=base_url().'admin/users'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/server'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-server"></i>
+                                <div data-i18n="Server">Server</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/settings'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-cog"></i>
+                                <div data-i18n="Settings">Settings</div>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </aside>
             <div class="layout-page">
@@ -174,8 +177,8 @@ data-template="vertical-menu-template-no-customizer"
                                         <div class="tab-pane fade show active" id="account" role="tabpanel">
                                             <div class="card-body">
                                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                                    <img src="../../assets/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>
-                                                    <div class="button-wrapper">
+                                                    <div id="image"></div>
+                                                    <div class="button-wrapper" hidden>
                                                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
                                                             <span class="d-none d-sm-block">Upload new photo</span>
                                                             <i class="bx bx-upload d-block d-sm-none"></i>
@@ -394,6 +397,63 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script>
+        $(document).ready(function(){
+            show_picture();
+            var userid = '<?=$this->session->userdata('userid')?>';
+            var baseurl = '<?=base_url()?>assets/img/users/';
+            function show_picture() {
+                $.ajax({
+                    type  : 'GET',
+                    url   : '<?php echo base_url()?>ajax/profile/show',
+                    async : true,
+                    dataType : 'json',
+                    success : function(data){
+                        var html = '';
+                        var i;
+                        for(i=0; i<data.length; i++){
+                            html += '<img src="'+baseurl+data[i].image+'" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>';
+                        }
+                        $('#image').html(html);
+                        console.log(data)
+                    }
+                });
+            }
+
+            $('#data_server').on('click','.show',function(){
+                var id=$(this).attr('data');
+                console.log(id)
+                $.ajax({
+                    type  : 'POST',
+                    url   : '<?php echo base_url()?>ajax/server/load_server',
+                    data : {id:id},
+                    success: function(data){
+                        $('#load_data').html(data);
+                    }
+                });
+            });
+
+            $('#btn_simpan').on('click',function(){
+                var name=$('#name').val();
+                var host=$('#host').val();
+                $.ajax({
+                    type : "POST",
+                    url  : "<?php echo base_url()?>ajax/server/add_server",
+                    dataType : "JSON",
+                    data : {name:name , host:host},
+                    success: function(data){
+                        $('[name="name"]').val("");
+                        $('[name="host"]').val("");
+                        data_server();
+                    }
+                });
+                return false;
+            });
+            $("#btn_reload").on('click',function(){
+                data_server();
+            });
+        });
+    </script>
 </body>
 </html>

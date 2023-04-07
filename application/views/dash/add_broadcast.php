@@ -8,7 +8,7 @@ data-assets-path="<?=base_url().'assets/'?>"
 data-template="vertical-menu-template-no-customizer"
 >
 <head>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title><?=$title?></title>
     <meta name="description" content="" />
@@ -24,9 +24,14 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/css/demo.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/apex-charts/apex-charts.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/flatpickr/flatpickr.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/jquery-timepicker/jquery-timepicker.css'?>" />
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/pickr/pickr-themes.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
@@ -45,13 +50,13 @@ data-template="vertical-menu-template-no-customizer"
                 <div class="menu-divider mt-0"></div>
                 <div class="menu-inner-shadow"></div>
                 <ul class="menu-inner py-1">
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="<?=base_url().''?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item ">
                         <a href="<?=base_url().'device'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-desktop"></i>
                             <div data-i18n="Device">Device</div>
@@ -91,7 +96,7 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Scheduling">Scheduling</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item active">
                         <a href="<?=base_url().'broadcast'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-broadcast"></i>
                             <div data-i18n="Broadcast">Broadcast</div>
@@ -151,66 +156,68 @@ data-template="vertical-menu-template-no-customizer"
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                <div class="card h-100">
-                                    <div class="card-header">
-                                        <h3 class="card-title mb-2">Congratulations Ifantech!</h3>
-                                        <span class="d-block mb-4 text-nowrap">Best seller of the month</span>
-                                    </div>
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <h5 class="card-header">Broadcast</h5>
                                     <div class="card-body">
-                                        <div class="row align-items-end">
-                                            <div class="col-6">
-                                                <h1 class="display-6 text-primary mb-2 pt-4 pb-1">$89k</h1>
-                                                <small class="d-block mb-3">You have done 57.6% <br />more sales today.</small>
-                                                <a href="javascript:;" class="btn btn-sm btn-primary">View sales</a>
+                                        <form name="contactform">
+                                            <div class="col mb-3">
+                                                <label class="form-label">Broadcast Name</label>
+                                                <input type="text" class="form-control" id="bc_name" required placeholder="John Doe" />
+                                                <input hidden type="text" class="form-control" id="userid" value="<?=$this->session->userdata('userid')?>" required placeholder="John Doe" />
                                             </div>
-                                            <div class="col-6">
-                                                <img src="../../assets/img/illustrations/prize-light.png" width="140" height="150" class="rounded-start" alt="View Sales" data-app-light-img="illustrations/prize-light.png" data-app-dark-img="illustrations/prize-dark.png"/>
+                                            <div class="col mb-3">
+                                                <label class="form-label">Device</label>
+                                                <select id="bc_device" class="selectpicker w-100" data-style="btn-default">
+                                                    <?php foreach($Device->result() as $d): ?>
+                                                        <option value="<?=$d->id?>"><?=$d->devicename?></option>
+                                                    <?php endforeach;?>
+                                                </select>
                                             </div>
+                                            <div class="col mb-3">
+                                                <label class="form-label">Contact</label>
+                                                <select id="bc_contact" class="selectpicker w-100" data-style="btn-default">
+                                                    <?php
+                                                    $userid = $this->session->userdata('userid');
+                                                    $query = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid'");
+                                                    $total =  $query->num_rows();
+                                                    ?>
+                                                    <option value="0">All Contacts (<?=$total?>)</option>
+                                                    <?php foreach($label->result() as $c): ?>
+                                                        <?php
+                                                        $userid = $this->session->userdata('userid');
+                                                        $query = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid' AND label='$c->id'");
+                                                        $total =  $query->num_rows();
+                                                        ?>
+                                                        <option value="<?=$c->id?>"><?=$c->name?> (<?=$total?>)</option>
+                                                    <?php endforeach;?>
+                                                </select>
+                                            </div>
+                                            <div class="col mb-3">
+                                                <label for="bs-datepicker-autoclose" class="form-label">Broadcast Time</label>
+                                                <input type="text" id="bs-datepicker-autoclose" placeholder="MM/DD/YYYY" class="form-control"/>
+                                            </div>
+                                            <div class="col mb-3" hidden>
+                                                <label for="flatpickr-range" class="form-label">Range Picker</label>
+                                                <input type="text" class="form-control" placeholder="YYYY-MM-DD to YYYY-MM-DD" id="flatpickr-range"/>
+                                            </div>
+                                            <div class="col mb-3">
+                                                <label class="form-label">Message</label>
+                                                <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                            </div>
+                                        <!-- <div class="col mb-3">
+                                            <label class="form-label">Image (Optional)</label>
+                                            <input class="form-control" type="file" id="formFile" />
+                                        </div> -->
+                                        <div class="col mb-3">
+                                            <button onclick="history.back()" type="button" class="btn btn-primary">
+                                                <span class="tf-icons bx bx-arrow-back"></span> Back
+                                            </button>
+                                            <button type="button" id="btn_simpan" class="btn btn-primary">
+                                                <span class="tf-icons bx bx-check"></span> Submit
+                                            </button>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 col-12 mb-4">
-                                <div class="row">
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body text-center">
-                                                <div class="avatar mx-auto mb-2">
-                                                    <span class="avatar-initial rounded-circle bg-label-success">
-                                                        <i class="bx bx-time fs-4"></i>
-                                                    </span>
-                                                </div>
-                                                <span class="d-block text-nowrap" data-i18n="Contacts">Contacts</span>
-                                                <h2 class="mb-0">65</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body text-center">
-                                                <div class="avatar mx-auto mb-2">
-                                                    <span class="avatar-initial rounded-circle bg-label-danger">
-                                                        <i class="bx bx-cart fs-4"></i>
-                                                    </span>
-                                                </div>
-                                                <span class="d-block text-nowrap" data-i18n="Scheduling">Schedule</span>
-                                                <h2 class="mb-0">40</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body text-center">
-                                                <div class="avatar mx-auto mb-2">
-                                                    <span class="avatar-initial rounded-circle bg-label-danger">
-                                                        <i class="bx bx-broadcast fs-4"></i>
-                                                    </span>
-                                                </div>
-                                                <span class="d-block text-nowrap" data-i18n="Broadcast">Broadcast</span>
-                                                <h2 class="mb-0">40</h2>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -224,46 +231,65 @@ data-template="vertical-menu-template-no-customizer"
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
     </div>
-	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/bootstrap.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/hammer/hammer.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/i18n/i18n.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/menu.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/apex-charts/apexcharts.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/moment/moment.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/flatpickr/flatpickr.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/bootstrap-datepicker/bootstrap-datepicker.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/bootstrap-daterangepicker/bootstrap-daterangepicker.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/jquery-timepicker/jquery-timepicker.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/pickr/pickr.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
-    <script src="<?=base_url().'assets/js/dashboards-ecommerce.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/autosize/autosize.js'?>"></script>
+    <script src="<?=base_url().'assets/js/forms-pickers.js'?>"></script>
+    <script src="<?=base_url().'assets/js/forms-extras.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
-    <script type="text/javascript">
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        <?php 
-        if ($this->session->flashdata('success')) { ?>
-            toastr.success("<?php echo $this->session->flashdata('success'); ?>");
-        <?php }elseif ($this->session->flashdata('info')) { ?>
-            toastr.info("<?php echo $this->session->flashdata('info'); ?>");
-        <?php }elseif ($this->session->flashdata('warning')) { ?>
-            toastr.warning("<?php echo $this->session->flashdata('warning'); ?>");
-        <?php }elseif ($this->session->flashdata('error')) { ?>
-            toastr.error("<?php echo $this->session->flashdata('error'); ?>");
-        <?php } ?>
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            $('#btn_simpan').on('click',function(){
+                var bc_name=$('#bc_name').val();
+                var bc_device=$('#bc_device').val();
+                var userid=$('#userid').val();
+                var bc_contact=$('#bc_contact').val();
+                var bc_contact=$('#bc_contact').val();
+                var bc_time=$('#bs-datepicker-autoclose').val();
+                var bc_msg=$('#autosize-demo').val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url()?>ajax/bc/add",
+                    dataType : "JSON",
+                    data: {userid:userid, bc_name:bc_name, bc_device:bc_device, bc_contact:bc_contact, bc_time:bc_time, bc_msg:bc_msg},
+                    success: function(data){
+                        document.contactform.reset();
+                        toastr.success("Broadcast Has Been Submit");
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>

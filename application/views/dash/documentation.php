@@ -24,10 +24,6 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/css/demo.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css'?>" />
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css'?>" />
-    <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
 </head>
@@ -87,7 +83,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>
@@ -111,25 +107,27 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Documentation">Documentation</div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/users'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/server'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-server"></i>
-                            <div data-i18n="Server">Server</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/settings'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-cog"></i>
-                            <div data-i18n="Settings">Settings</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('role') == 1): ?>
+                        <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
+                        <li class="menu-item active">
+                            <a href="<?=base_url().'admin/users'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/server'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-server"></i>
+                                <div data-i18n="Server">Server</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/settings'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-cog"></i>
+                                <div data-i18n="Settings">Settings</div>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </aside>
             <div class="layout-page">
@@ -151,22 +149,68 @@ data-template="vertical-menu-template-no-customizer"
             	<div class="content-wrapper">
             		<div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="card mb-4">
-                                    <h5 class="card-header">Documentation</h5>
-                                    <div class="card-body">
-                                        <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
-                                            </div>
+                            <div class="col-xl-12">
+                                <h6 class="text-muted">Documentations</h6>
+                                <div class="nav-align-left mb-4">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-home" aria-controls="navs-left-home" aria-selected="true">Home</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Check Number</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Add Contact</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Contact List</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Add Label</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Label List</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Broadcast</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Text Message</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Media Message</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Button Message</button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Location Message</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="navs-left-home">
+                                            <p>
+                                                Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps
+                                                powder. Bear claw candy topping.
+                                            </p>
+                                            <p class="mb-0">
+                                                Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
+                                                jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
+                                                jujubes sweet.
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="navs-left-profile">
+                                            <p>
+                                                Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
+                                                cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
+                                                cheesecake fruitcake.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-            		</div>
+                    </div>
             		<?php $this->load->view('options/footer') ?>
             		<div class="content-backdrop fade"></div>
             	</div>
@@ -183,13 +227,6 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/i18n/i18n.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/menu.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables/jquery.dataTables.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-responsive/datatables.responsive.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
 </body>
 </html>

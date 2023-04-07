@@ -11,6 +11,15 @@ class Broadcast extends CI_Controller {
 	}
 	public function index()
 	{
-		$this->load->view('dash/broadcast');
+		$userid = $this->session->userdata('userid');
+		$data['broadcast'] = $this->m_data->broadcastbyuser($userid);
+		$this->load->view('dash/broadcast',$data);
+	}
+	public function add()
+	{
+		$userid = $this->session->userdata('userid');
+		$data['label'] = $this->m_data->LabelByUser($userid);
+		$data['Device'] = $this->m_data->DeviceByUser($userid);
+		$this->load->view('dash/add_broadcast',$data);
 	}
 }

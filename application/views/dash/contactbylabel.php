@@ -92,7 +92,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>

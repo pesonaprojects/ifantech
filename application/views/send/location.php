@@ -41,6 +41,7 @@ data-template="vertical-menu-template-no-customizer"
     <style>
         #node1Map { height: 350px; }
     </style>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -98,7 +99,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>
@@ -170,7 +171,7 @@ data-template="vertical-menu-template-no-customizer"
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                            <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                            <select id="input-nohp" class="selectpicker w-100" data-style="btn-default">
                                                 <?php foreach($contact->result() as $c): ?>
                                                     <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                 <?php endforeach;?>
@@ -184,7 +185,7 @@ data-template="vertical-menu-template-no-customizer"
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <button type="button" class="btn rounded-pill btn-primary">
+                                            <button type="button" id="location" class="btn rounded-pill btn-primary">
                                                 <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                             </button>
                                         </div>
@@ -216,6 +217,7 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
     <script>
         const mymap = L.map('node1Map').setView([51.0967668, 5.9665431], 12);
         const attribution ='Web Dev By &copy <a href="https://waapi.es/copyright">WAAPI.es</a>';
@@ -228,12 +230,95 @@ data-template="vertical-menu-template-no-customizer"
             if (marker) mymap.removeLayer(marker);
             lat = e.latlng.lat;
             lng = e.latlng.lng;
-            console.log(lat);
-            console.log(lng);
             marker = L.marker([lat, lng]).addTo(mymap);
             document.getElementById("lat").textContent = lat;
             document.getElementById("lon").textContent = lng;
         });
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        var server = "<?=$host?>";
+        var id = "<?=$deviceid?>";
+        ws = new WebSocket(`ws://${server}?token=${id}`);
+        ws.onopen = () => {
+            console.log('connect')
+            handle(ws)
+            user = id
+            ws.send('status')
+            ws.send('info')
+        }
+        ws.onmessage = (ev) => {
+            try {
+                const data = JSON.parse(ev.data)
+                switch (data.type) {
+                    case 'info':
+                    if(data.data.webhook){
+                        $('#add-webhook').hide();
+                        $('#input-webhook').val(data.data.webhook);
+                        $('#remove-webhook').show();
+                    }
+                    $('#nomor-client').val(data.data.nomor);
+                    $('#name-client').val(data.data.name);
+                    break;
+                    case 'status':
+                    if(!data.data || (data.data && data.data == 'idle')){
+                        $('#qrcode').html(`<b>Silahkan lakukan scan</b>`)
+                    }else if(data.data && data.data == 'running'){
+                        $('#qrcode').html(`<b>terhubung ke whatsapp</b>`)
+                    }
+                    else{
+                        $('#btn-scan').attr('disabled', '');
+                    }
+                    break;
+                    case 'qr':
+                    $('#qrcode').html(`<img src="${data.data}"/>`)
+                    break;
+                    default:
+                    break;
+                }
+            } catch (error) {
+                $('#log').append(`<p>${ev.data}</p>`)
+            }
+        }
+        ws.onclose = () => {
+            $('#log').prepend(`<p>Gagal Terhubung</p>`)
+            ws = null
+        }
+        ws.onerror = () => {
+            ws.close()
+        }
+        const handle = (ws) => {
+            $('#location').click(function (e) {
+                e.preventDefault();
+                const nohp = $('#input-nohp').val();
+                const degreesLatitude = lat;
+                const degreesLongitude = lng;
+                ws.send(JSON.stringify(
+                    {
+                        "model": "location",
+                        "type": "send",
+                        "nohp": nohp,
+                        "degreesLatitude": degreesLatitude,
+                        "degreesLongitude": degreesLongitude
+                    }, null, 2
+                ))
+                toastr.success('Message has been Sent');
+            });
+        }
     </script>
 </body>
 </html>

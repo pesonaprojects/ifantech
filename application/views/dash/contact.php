@@ -89,7 +89,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>
@@ -113,25 +113,27 @@ data-template="vertical-menu-template-no-customizer"
                             <div data-i18n="Documentation">Documentation</div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/users'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="Users">Users</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/server'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-server"></i>
-                            <div data-i18n="Server">Server</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="<?=base_url().'admin/settings'?>" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-cog"></i>
-                            <div data-i18n="Settings">Settings</div>
-                        </a>
-                    </li>
+                    <?php if ($this->session->userdata('role') == 1): ?>
+                        <li class="menu-header small text-uppercase"><span class="menu-header-text">Administrator</span></li>
+                        <li class="menu-item active">
+                            <a href="<?=base_url().'admin/users'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="Users">Users</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/server'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-server"></i>
+                                <div data-i18n="Server">Server</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="<?=base_url().'admin/settings'?>" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-cog"></i>
+                                <div data-i18n="Settings">Settings</div>
+                            </a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </aside>
             <div class="layout-page">
@@ -159,7 +161,7 @@ data-template="vertical-menu-template-no-customizer"
                                         <i class="fas fa-1x fa-plus-circle text-wite"></i> Add Contacts
                                     </button>
                                     <div class="modal fade" id="add_contacts" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-dialog modal-lg" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel2">Add Contacts</h5>
@@ -170,13 +172,13 @@ data-template="vertical-menu-template-no-customizer"
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <label class="form-label">Name</label>
-                                                                <input type="text" id="nameSmall" class="form-control" placeholder="Enter Name" name="name" />
+                                                                <input type="text" class="form-control" required="" placeholder="Enter Name" name="name" />
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <label class="form-label">Phone</label>
-                                                                <input type="text" id="nameSmall" class="form-control" placeholder="Phone" name="phone" />
+                                                                <input type="text" required id="input-nohp" class="form-control" placeholder="Phone" name="phone" />
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -216,7 +218,7 @@ data-template="vertical-menu-template-no-customizer"
                                                         <div class="row">
                                                             <div class="col mb-3">
                                                                 <label class="form-label">Label Name</label>
-                                                                <input type="text" id="nameSmall" class="form-control" placeholder="Label Name" name="labelname" />
+                                                                <input type="text" required id="nameSmall" class="form-control" placeholder="Label Name" name="labelname" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -240,7 +242,8 @@ data-template="vertical-menu-template-no-customizer"
                                                 <i class="fas fa-tag"></i> Semua kontak
                                                 <span class="badge bg-primary float-right">
                                                     <?php
-                                                    $query = $this->db->query("SELECT * FROM i_contacts");
+                                                    $userid = $this->session->userdata('userid');
+                                                    $query = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid'");
                                                     $total =  $query->num_rows();
                                                     echo number_format($total);
                                                     ?>
@@ -264,45 +267,47 @@ data-template="vertical-menu-template-no-customizer"
                             </div>
                             <div class="col-lg-9 col-md-6 col-12 mb-4">
                                 <div class="card">
-                                    <table id="example" class="table table-striped" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Contact</th>
-                                                <th>Label</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach($contact->result() as $c): ?>
+                                    <div class="card-body">
+                                        <table id="example" class="table table-striped" style="width:100%">
+                                            <thead>
                                                 <tr>
-                                                    <td><?=$c->name?></td>
-                                                    <td><?=$c->contacts?></td>
-                                                    <td>
-                                                        <?php 
-                                                        $GetLabelName = $this->db->get_where('i_label', ['id' => $c->label])->row_array(); ?>
-                                                        <span class="badge rounded-pill bg-label-primary"><?=$GetLabelName['name']?></span>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn rounded-pill btn-icon btn-label-primary" data-bs-toggle="modal" data-bs-target="#edit<?=$c->id?>">
-                                                            <span class="tf-icons bx bx-pencil"></span>
-                                                        </button>
-                                                        <button type="button" class="btn rounded-pill btn-icon btn-label-danger" data-bs-toggle="modal" data-bs-target="#hapus<?=$c->id?>">
-                                                            <span class="tf-icons bx bx-trash"></span>
-                                                        </button>
-                                                    </td>
+                                                    <th>Name</th>
+                                                    <th>Contact</th>
+                                                    <th>Label</th>
+                                                    <th>Actions</th>
                                                 </tr>
-                                            <?php endforeach;?>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Contact</th>
-                                                <th>Label</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach($contact->result() as $c): ?>
+                                                    <tr>
+                                                        <td><?=$c->name?></td>
+                                                        <td><?=$c->contacts?></td>
+                                                        <td>
+                                                            <?php 
+                                                            $GetLabelName = $this->db->get_where('i_label', ['id' => $c->label])->row_array(); ?>
+                                                            <span class="badge rounded-pill bg-label-primary"><?=$GetLabelName['name']?></span>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn rounded-pill btn-icon btn-label-primary" data-bs-toggle="modal" data-bs-target="#edit<?=$c->id?>">
+                                                                <span class="tf-icons bx bx-pencil"></span>
+                                                            </button>
+                                                            <button type="button" class="btn rounded-pill btn-icon btn-label-danger" data-bs-toggle="modal" data-bs-target="#hapus<?=$c->id?>">
+                                                                <span class="tf-icons bx bx-trash"></span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach;?>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Contact</th>
+                                                    <th>Label</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>

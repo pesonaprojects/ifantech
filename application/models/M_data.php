@@ -25,11 +25,21 @@ class M_data extends CI_Model
 		$result = $this->db->insert('i_device', $data);
 		return $result;
 	}
+	function SaveBroadcast($data)
+	{
+		$result = $this->db->insert('i_broadcast', $data);
+		return $result;
+	}
 
 	//read
 	function LabelByUser($userid)
 	{
 		$result = $this->db->query("SELECT * FROM i_label WHERE userid='$userid'");
+		return $result;
+	}
+	function DeviceByUser($userid)
+	{
+		$result = $this->db->query("SELECT * FROM i_device WHERE deviceuser='$userid'");
 		return $result;
 	}
 	function AllUsers()
@@ -47,8 +57,17 @@ class M_data extends CI_Model
 		$result = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid' AND label='$label'");
 		return $result;
 	}
+	function broadcastbyuser($userid)
+	{
+		$result = $this->db->query("SELECT * FROM i_broadcast WHERE bc_users='$userid'");
+		return $result;
+	}
 	function server_list(){
 		$hasil=$this->db->query("SELECT * FROM i_server");
+		return $hasil->result();
+	}
+	function GetMe($userid){
+		$hasil=$this->db->query("SELECT * FROM i_users WHERE id='$userid'");
 		return $hasil->result();
 	}
 

@@ -9,11 +9,6 @@ class Account extends CI_Controller {
 		error_reporting(0);
 		cek_sesi();
 	}
-	public function profile()
-	{
-		$data['title'] = "Profile";
-		$this->load->view('dash/profile',$data);
-	}
 	public function setting()
 	{
 		$data['title'] = "Profile Setting";

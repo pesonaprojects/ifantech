@@ -92,7 +92,7 @@ data-template="vertical-menu-template-no-customizer"
                             </li>
                         </ul>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item" hidden>
                         <a href="<?=base_url().'schedule'?>" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-time"></i>
                             <div data-i18n="Scheduling">Scheduling</div>
@@ -202,7 +202,7 @@ data-template="vertical-menu-template-no-customizer"
                                 <hr>
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="mb-3">
+                                        <div class="mb-3" hidden>
                                             <label class="form-label">Host</label>
                                             <input type="text" class="form-control" value="<?=$host?>" aria-describedby="defaultFormControlHelp" id="" />
                                         </div>
@@ -225,18 +225,18 @@ data-template="vertical-menu-template-no-customizer"
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Nomer Whatsapp</label>
-                                            <input type="text" class="form-control" value="" readonly/>
+                                            <input type="text" class="form-control" id="nomor-client" name="nomor-client" readonly/>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Nama Whatsapp</label>
-                                            <input type="text" class="form-control" value="" readonly/>
+                                            <input type="text" class="form-control" value="" id="name-client" name="name-client" readonly/>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Webhook</label>
                                             <input type="text" class="form-control" placeholder="" readonly/>
                                         </div>
                                         <div class="mb-3">
-                                            <button type="button" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal">
+                                            <button type="button" name="btn-scan" id="btn-scan" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal">
                                                 <span class="tf-icons bx bx-qr-scan" title="Scan QR"></span>
                                           </button>
                                         </div>
@@ -268,7 +268,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <li>Arahkan telepon Anda ke layar ini untuk memindai kode tersebut</li>
                                             </ol>
                                         </div>
-                                        <div class="col-md-6 mb-3 text-center">
+                                        <div class="col-md-6 mb-3 text-center" id="qrcode">
                                             <center>
                                                 <div class="sk-grid sk-primary">
                                                     <div class="sk-grid-cube"></div>
@@ -353,6 +353,65 @@ data-template="vertical-menu-template-no-customizer"
         <?php }elseif ($this->session->flashdata('error')) { ?>
             toastr.error("<?php echo $this->session->flashdata('error'); ?>");
         <?php } ?>
+    </script>
+    <script>
+        var server = "<?=$host?>";
+        var id = "<?=$deviceid?>";
+        ws = new WebSocket(`ws://${server}?token=${id}`);
+        ws.onopen = () => {
+            console.log('connect')
+            handle(ws)
+            user = id
+            ws.send('status')
+            ws.send('info')
+        }
+        ws.onmessage = (ev) => {
+            try {
+                const data = JSON.parse(ev.data)
+                switch (data.type) {
+                    case 'info':
+                    if(data.data.webhook){
+                        $('#add-webhook').hide();
+                        $('#input-webhook').val(data.data.webhook);
+                        $('#remove-webhook').show();
+                    }
+                    $('#nomor-client').val(data.data.nomor);
+                    $('#name-client').val(data.data.name);
+                    break;
+                    case 'status':
+                    if(!data.data || (data.data && data.data == 'idle')){
+                        $('#qrcode').html(`<b>Silahkan lakukan scan</b>`)
+                    }else if(data.data && data.data == 'running'){
+                        $('#qrcode').html(`<b>terhubung ke whatsapp</b>`)
+                    }
+                    else{
+                        $('#btn-scan').attr('disabled', '');
+                    }
+                    break;
+                    case 'qr':
+                    $('#qrcode').html(`<img src="${data.data}"/>`)
+                    break;
+                    default:
+                    break;
+                }
+            } catch (error) {
+                $('#log').append(`<p>${ev.data}</p>`)
+            }
+        }
+        ws.onclose = () => {
+            $('#log').prepend(`<p>Gagal Terhubung</p>`)
+            ws = null
+        }
+        ws.onerror = () => {
+            ws.close()
+        }
+        const handle = (ws) => {
+            $('#btn-scan').click(function (e) { 
+                e.preventDefault();
+                ws.send('start')
+                $('#qrcode').html()
+            });
+        }
     </script>
 </body>
 </html>
