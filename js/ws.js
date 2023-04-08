@@ -1,90 +1,24 @@
-
-const connect = (id) => {
-    // ambil data server yang open
-    console.log(id)
-        ws = new WebSocket(`ws://89.117.54.16:4400?token=${id}`);
-        ws.onopen = () => {
-            console.log('connect')
-            handle(ws)
-            ws.send('status')
-            ws.send('info')
-        }
-
-        ws.onmessage=(ev)=>{
-            try{
-                const data=JSON.parse(ev.data)
-                console.log(data)
-                switch(data.type){
-                    case 'qr':
-                                $('#qrcode').html(
-                                    `<img src="${data.data}"/>`
-                                )
-                                break;
-                    case 'upload':
-                    $('#progressBarImage').attr('value', "0");
-                    const files = $(`#${fileId}`).prop('files')
-                    if(files.length > 0){
-                        const blob = files[0]
-                        ws.send(JSON.stringify({
-                            "cmd" : 1,
-                            "data" : blob.name,
-                            "size": blob.size,
-                            "nohp": data.data.nohp,
-                            "text": data.data.text,
-                            "model": data.data.model,
-                            "mimetype": data.data.mimetype
-                        }));
-                        const BYTES_PER_CHUNK = data.data.chunk;
-
-                        const SIZE = blob.size;
-
-                        var start = data.data.start;
-                        var end = BYTES_PER_CHUNK;
-
-                        while (start < SIZE) {
-
-                            if ('mozSlice' in blob) {
-                                var chunk = blob.mozSlice(start, end);
-                            } else if ('slice' in blob) {
-                                    var chunk = blob.slice(start, end);
-                            } else {
-                                var chunk = blob.webkitSlice(start, end);
-                            }
-
-                            ws.send(chunk);
-
-                            start = end;
-                            end = start + BYTES_PER_CHUNK;
-                        }
-
-                        ws.send(JSON.stringify({
-                            "cmd" : 2,
-                            "data" : blob.name,
-                            "nohp": data.data.nohp,
-                            "text": data.data.text,
-                            "model": data.data.model
-                        }));
-                    }
-                                break;
-                    default:
-                        break;
-                }
-            }
-            catch(e){
-                console.log(e)
-            }
-        }
-        ws.onclose = () => {
-            ws = null
-        }
-
-        // event websocket ketika socket error
-        ws.onerror = () => {
-            ws.close()
-        }
-
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
 }
-connect(document.getElementById("idnomor").getAttribute("data"))
+function getValues(selector) {
+    var els = document.querySelectorAll(selector);
+    return [].map.call(els, el => el.value);
+}
 function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -94,41 +28,146 @@ function makeid(length) {
     }
    return result;
 }
+const server = $('#host').attr('data');
+const id = $('#deviceid').attr('data');
+ws = new WebSocket(`ws://${server}?token=${id}`);
+ws.onopen = () => {
+    console.log('connect')
+    handle(ws)
+    user = id
+    ws.send('status')
+    ws.send('info')
+}
+ws.onmessage = (ev) => {
+    try {
+        const data = JSON.parse(ev.data)
+        switch (data.type) {
+            case 'info':
+            if(data.data.webhook){
+                $('#add-webhook').hide();
+                $('#input-webhook').val(data.data.webhook);
+                $('#remove-webhook').show();
+            }
+            $('#nomor-client').val(data.data.nomor);
+            $('#name-client').val(data.data.name);
+            break;
+            case 'status':
+            if(!data.data || (data.data && data.data == 'idle')){
+                $('#qrcode').html(`<b>Silahkan lakukan scan</b>`)
+            }else if(data.data && data.data == 'running'){
+                $('#qrcode').html(`<b>terhubung ke whatsapp</b>`)
+            }
+            else{
+                $('#btn-scan').attr('disabled', '');
+            }
+            break;
+            case 'upload-progress':
+            $('#progressBarImage').show();
+            $('#progressBarImage').attr('value', data.data.progress.toString());
+            break;
+            case 'upload':
+            $('#progressBarImage').attr('value', "0");
+            const files = $(`#${fileId}`).prop('files')
+            if(files.length > 0){
+                const blob = files[0]
+                ws.send(JSON.stringify({
+                    "cmd" : 1,
+                    "data" : blob.name,
+                    "size": blob.size,
+                    "nohp": data.data.nohp,
+                    "text": data.data.text,
+                    "model": data.data.model,
+                    "mimetype": data.data.mimetype
+                }));
+                const BYTES_PER_CHUNK = data.data.chunk;
+
+                const SIZE = blob.size;
+
+                var start = data.data.start;
+                var end = BYTES_PER_CHUNK;
+
+                while (start < SIZE) {
+
+                    if ('mozSlice' in blob) {
+                        var chunk = blob.mozSlice(start, end);
+                    } else if ('slice' in blob) {
+                        var chunk = blob.slice(start, end);
+                    } else {
+                        var chunk = blob.webkitSlice(start, end);
+                    }
+
+                    ws.send(chunk);
+
+                    start = end;
+                    end = start + BYTES_PER_CHUNK;
+                }
+
+                ws.send(JSON.stringify({
+                    "cmd" : 2,
+                    "data" : blob.name,
+                    "nohp": data.data.nohp,
+                    "text": data.data.text,
+                    "model": data.data.model
+                }));
+
+                $('#text-image').removeAttr('disabled');
+                $('#btn-doc').removeAttr('disabled');
+            }
+            break;
+            case 'qr':
+            $('#qrcode').html(`<img src="${data.data}"/>`)
+            break;
+            default:
+            break;
+        }
+    } catch (error) {
+        $('#log').append(`<p>${ev.data}</p>`)
+    }
+}
+ws.onclose = () => {
+    $('#log').prepend(`<p>Gagal Terhubung</p>`)
+    ws = null
+}
+ws.onerror = () => {
+    ws.close()
+}
 const handle = (ws) => {
-    $("#buttonQr").click(function(e){
+    $('#btn-scan').click(function (e) { 
         e.preventDefault();
-        ws.send("start")
-        alert("SELAMAT ANDA BERHASIL LOGIN")
-    })
-    $("#kirim-pesan").click(function(e){
+        ws.send('start')
+        $('#qrcode').html()
+    });
+    $('#text-normal').click(function (e) {
         e.preventDefault();
-        nohp=$("#selectpickerBasic").val()
-        text=$("#autosize-demo").val()
-        ws.send(JSON.stringify(
-            {
-                "model": "text",
-                "type": "send",
-                "nohp": nohp,
-                "text": text
-            }, null, 2
-        ))
-    })
-    $('#button-image').click(function (e) { 
-        e.preventDefault();
-        const files = $('#formFile').prop('files')
-        fileId = 'formFile'
-        
-        const nohp = $('#selectpickerBasic').val();
+        $('#text-normal').attr('disabled', '');
+        const nohp = $('#phonenumber').val();
         const text = $('#autosize-demo').val();
+        ws.send(JSON.stringify(
+        {
+            "model": "text",
+            "type": "send",
+            "nohp": nohp,
+            "text": text
+        }, null, 2
+        ))
+        toastr.success('Message has been Sent');
+    });
+    $('#text-image').click(function (e) { 
+        e.preventDefault();
+        const files = $('#image-input').prop('files')
+        fileId = 'image-input'
+        const nohp = $('#phonenumber').val();
+        const text = $('#autosize-demo').val();
+        console.log(files)
         if(files.length > 0){
             const blob = files[0]
             const fsize = blob.size;
             const file = Math.round((fsize / 1024));
             if(file > 8000){
-                alert('size file terlalu besar, maksimal 8 MB')
+                toastr.warning('the file size is too large, a maximum of 8 MB')
                 return
             }
-            console.log('gas')
+            $('#text-image').attr('disabled', '');
             ws.send(JSON.stringify(            {
                 "type": "prepare-upload",
                 "file": "${blob.name}",
@@ -137,103 +176,129 @@ const handle = (ws) => {
                 "text": text,
                 "model": "image"
             }, null, 2))
+            toastr.success('Message has been Sent');
+        }
+        else{
+            toastr.warning('Failed Sent Message');
         }
     });
-
-    $('#button-doc').click(function (e) { 
+    $('#btn-doc').click(function (e) { 
         e.preventDefault();
-        const files = $('#formFile1').prop('files')
-        fileId = 'formFile1'
-        const nohp = $('#selectpickerBasic1').val();
+        const files = $('#doc-input').prop('files')
+        fileId = 'doc-input'
+        const nohp = $('#phonenumber').val();
         if(files.length > 0){
             const blob = files[0]
             const fsize = blob.size;
             const file = Math.round((fsize / 1024));
             if(file > 8000){
-                alert('size file terlalu besar, maksimal 8 MB')
+                toastr.warning('the file size is too large, a maximum of 8 MB')
                 return
             }
-            console.log('gas')
             ws.send(JSON.stringify(
-                {
-                    "type": "prepare-upload",
-                    "file": blob.name,
-                    "size": blob.size,
-                    "nohp": nohp,
-                    "model": "document",
-                    "mimetype": blob.type
-                }, null, 2
+            {
+                "type": "prepare-upload",
+                "file": blob.name,
+                "size": blob.size,
+                "nohp": nohp,
+                "model": "document",
+                "mimetype": blob.type
+            }, null, 2
             ))
+            toastr.success('Message has been Sent');
+        }
+        else{
+            toastr.warning('Failed Sent Message');
         }
     });
-
-    $('#button-list').click(function(e){
-        e.preventDefault()
-        const nohp = $('#selectpickerBasic1').val();
-        const btext = $('#defaultFormControlInput1').val();
-        const idlist=Math.floor(Math.random()*101)
-        const text = $('#autosize-demo1').val();
-        const titles = $("#creditCardMask1").val()
-        const ress = $("#creditCardMask2").val()
-        const id = makeid(10)
-        const rows = []
-        const auto = []
-        rows.push({
-            "title": titles,
-            "rowId": `${idlist}]${id}`
-        })
-        auto.push({
-            id: id,
-            reply: {
-                text: ress
-            },
-            file: null
-        })
-        console.log("GAS")
+    $('#location').click(function (e) {
+        e.preventDefault();
+        const nohp = $('#input-nohp').val();
+        const degreesLatitude = lat;
+        const degreesLongitude = lng;
+        ws.send(JSON.stringify(
+        {
+            "model": "location",
+            "type": "send",
+            "nohp": nohp,
+            "degreesLatitude": degreesLatitude,
+            "degreesLongitude": degreesLongitude
+        }, null, 2
+        ))
+        toastr.success('Message has been Sent');
+    });
+    $('#btn-button-link').click(function (e) {
+        console.log('button link')
+        e.preventDefault();
+        const nohp = $('#phonenumber').val();
+        const text = $('#link-caption').val();
+        const btext = $('#link-button-text').val()
+        const link = $('#link-url').val();
         ws.send(JSON.stringify(
             {
                 "type": "send",
                 "nohp": nohp,
-                "id": idlist,
-                "model": "list",
-                "sections": [
-                    {
-                        "title": "",
-                        "rows": rows
-                    }
-                ],
-                "auto": auto,
+                "model": "button-link",
+                "url": link,
                 "btext": btext,
                 "text": text
             }
         ), null, 2)
-    })
-
-    $('#button-respons').click(function (e) { 
+        toastr.success('Message has been Sent');
+    });
+    $('#btn-copy').click(function (e) { 
+        console.log('button copy')
         e.preventDefault();
-        const nohp = $('#selectpickerBasic2').val();
-        const text = $('#autosize-demo2').val();
-        const bts = $('#creditCardMask3').val();
-        const ress = $('#creditCardMask4').val();
-        const id = Math.floor(Math.random()*101)
-        const ids = makeid(10)
+        const nohp = $('#phonenumber-copy').val();
+        const text = $('#btn-copy-caption').val();
+        const btext = $('#text-btn-copy').val()
+        const copy = $('#text-copy').val();
+        ws.send(JSON.stringify(
+            {
+                "type": "send",
+                "nohp": nohp,
+                "model": "button-copy",
+                "textCopy": copy,
+                "btext": btext,
+                "text": text
+            }
+        ), null, 2)
+        toastr.success('Message has been Sent');
+    });
+    $('#btn-respons').click(function (e) { 
+        console.log('button respons')
+        e.preventDefault();
+        const nohp = $('#phonenumber-respons').val();
+        const text = $('#btn-respons-caption').val();
+        const bts = getValues('#btn-respons-title');
+        const ress = getValues('#btn-respons-res');
+        const id = 1;
         const buttons = []
         const auto = []
-        buttons.push({
-            buttonId: `${id}]${ids}`,
-            buttonText: {
-                displayText: bts
-            },
-        })
-        auto.push({
-            id: ids,
-            reply: {
-                text: ress
-            },
-            file: null
-        })
+        for (let i = 0; i < bts.length; i++) {
+            const bt = bts[i];
+            const res = ress[i];
+            const ids = makeid(10)
+            if(bt == '' || res == ''){
+                continue;
+            }
+            buttons.push({
+                buttonId: `${id}]${ids}`,
+                buttonText: {
+                    displayText: bt
+                },
+            })
+            auto.push({
+                id: ids,
+                reply: {
+                    text: res
+                },
+                file: null
+            })
+        }
 
         if(buttons.length > 0){
+            $('#btn-button').attr('disabled', '');
             console.log(JSON.stringify(buttons, null, 2))
             console.log(JSON.stringify(auto, null, 2))
             ws.send(JSON.stringify(
@@ -247,59 +312,7 @@ const handle = (ws) => {
                     "text": text
                 }
             ), null, 2)
+            toastr.success('Message has been Sent');
         }
     });
-    $('#button-copy').click(function (e) { 
-        e.preventDefault();
-        const nohp = $('#selectpickerBasic3').val();
-        const text = $('#autosize-demo3').val();
-        const btext = $('#creditCardMask5').val()
-        const copy = $('#creditCardMask6').val();
-        ws.send(JSON.stringify(
-            {
-                "type": "send",
-                "nohp": nohp,
-                "model": "button-copy",
-                "textCopy": copy,
-                "btext": btext,
-                "text": text
-            }
-        ), null, 2)
-    });
-
-    $('#button-link').click(function (e) { 
-        e.preventDefault();
-        const nohp = $('#selectpickerBasic4').val();
-        const text = $('#autosize-demo4').val();
-        const btext = $('#creditCardMask7').val()
-        const link = $('#creditCardMask8').val();
-        ws.send(JSON.stringify(
-            {
-                "type": "send",
-                "nohp": nohp,
-                "model": "button-link",
-                "url": link,
-                "btext": btext,
-                "text": text
-            }
-        ), null, 2)
-    });
-
-    $('#location').click(function (e) { 
-        e.preventDefault();
-        const nohp = $('#selectpickerBasic').val();
-        const degreesLatitude = $('#lat').val();
-        const degreesLongitude = $('#lon').val();
-        ws.send(JSON.stringify(
-            {
-                "model": "location",
-                "type": "send",
-                "nohp": nohp,
-                "degreesLatitude": degreesLatitude,
-                "degreesLongitude": degreesLongitude
-            }, null, 2
-        ))
-    });
-
-
 }

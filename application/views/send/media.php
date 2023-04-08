@@ -31,6 +31,7 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -176,7 +177,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade show active" id="navs-within-card-active" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -188,10 +189,10 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="formFile" class="form-label">Image</label>
-                                                        <input class="form-control" type="file" id="formFile">
+                                                        <input id="image-input" accept="image/*" class="form-control" type="file" id="formFile">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button type="button" id="text-image" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
@@ -199,7 +200,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="navs-within-card-link" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -207,10 +208,10 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="formFile" class="form-label">Document</label>
-                                                        <input class="form-control" type="file" id="formFile">
+                                                        <input id="doc-input" class="form-control" type="file" id="formFile">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button id="btn-doc" type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
@@ -229,6 +230,8 @@ data-template="vertical-menu-template-no-customizer"
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
+        <div id="host" data="<?=$host?>"></div>
+        <div id="deviceid" data="<?=$deviceid?>"></div>
     </div>
 	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
@@ -243,5 +246,8 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/autosize/autosize.js'?>"></script>
     <script src="<?=base_url().'assets/js/forms-extras.js'?>"></script>
     <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script src="<?=base_url().'js/ws.js'?>"></script>
 </body>
 </html>

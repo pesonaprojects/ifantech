@@ -31,6 +31,7 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/bootstrap-select/bootstrap-select.css'?>"/>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
 	<div class="layout-wrapper layout-content-navbar">
@@ -218,7 +219,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-respons" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber-respons" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -226,26 +227,24 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
-                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                        <textarea id="btn-respons-caption" name="id" rows="3" class="form-control"></textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Title</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
-                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                                <input type="text" id="btn-respons-title" name="id" class="form-control credit-card-mask" placeholder="Title" aria-describedby="creditCardMask2">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Respons</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
-                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                                <input type="text" id="btn-respons-res" name="id" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button id="btn-respons" type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
@@ -253,7 +252,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-copy" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber-copy" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -261,26 +260,26 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
-                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                        <textarea id="btn-copy-caption" rows="3" class="form-control"></textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Button</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <input type="text" id="text-btn-copy" name="creditCardMask" class="form-control credit-card-mask" placeholder="example" aria-describedby="creditCardMask2">
                                                                 <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Text Copy</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <input type="text" id="text-copy" name="creditCardMask" class="form-control credit-card-mask" placeholder="example" aria-describedby="creditCardMask2">
                                                                 <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button id="btn-copy" type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
@@ -288,7 +287,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade" id="button-link" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -296,26 +295,26 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
-                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                        <textarea id="link-caption" rows="3" class="form-control"></textarea>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Button</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <input type="text" id="link-button-text" name="creditCardMask" class="form-control credit-card-mask" placeholder="Button Text" aria-describedby="creditCardMask2">
                                                                 <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Link</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
+                                                                <input type="text" id="link-url" name="creditCardMask" class="form-control credit-card-mask" placeholder="https://contoh.com" aria-describedby="creditCardMask2">
                                                                 <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button id="btn-button-link" type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>
@@ -334,6 +333,8 @@ data-template="vertical-menu-template-no-customizer"
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
+        <div id="host" data="<?=$host?>"></div>
+        <div id="deviceid" data="<?=$deviceid?>"></div>
     </div>
 	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
@@ -351,5 +352,7 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
     <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script src="<?=base_url().'js/ws.js'?>"></script>
 </body>
 </html>

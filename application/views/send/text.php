@@ -188,6 +188,8 @@ data-template="vertical-menu-template-no-customizer"
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
+        <div id="host" data="<?=$host?>"></div>
+        <div id="deviceid" data="<?=$deviceid?>"></div>
     </div>
 	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
@@ -208,91 +210,6 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/js/forms-extras.js'?>"></script>
     <script src="<?=base_url().'/assets/vendor/libs/bootstrap-select/bootstrap-select.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
-    <script>
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        var server = "<?=$host?>";
-        var id = "<?=$deviceid?>";
-        ws = new WebSocket(`ws://${server}?token=${id}`);
-        ws.onopen = () => {
-            console.log('connect')
-            handle(ws)
-            user = id
-            ws.send('status')
-            ws.send('info')
-        }
-        ws.onmessage = (ev) => {
-            try {
-                const data = JSON.parse(ev.data)
-                switch (data.type) {
-                    case 'info':
-                    if(data.data.webhook){
-                        $('#add-webhook').hide();
-                        $('#input-webhook').val(data.data.webhook);
-                        $('#remove-webhook').show();
-                    }
-                    $('#nomor-client').val(data.data.nomor);
-                    $('#name-client').val(data.data.name);
-                    break;
-                    case 'status':
-                    if(!data.data || (data.data && data.data == 'idle')){
-                        $('#qrcode').html(`<b>Silahkan lakukan scan</b>`)
-                    }else if(data.data && data.data == 'running'){
-                        $('#qrcode').html(`<b>terhubung ke whatsapp</b>`)
-                    }
-                    else{
-                        $('#btn-scan').attr('disabled', '');
-                    }
-                    break;
-                    case 'qr':
-                    $('#qrcode').html(`<img src="${data.data}"/>`)
-                    break;
-                    default:
-                    break;
-                }
-            } catch (error) {
-                $('#log').append(`<p>${ev.data}</p>`)
-            }
-        }
-        ws.onclose = () => {
-            $('#log').prepend(`<p>Gagal Terhubung</p>`)
-            ws = null
-        }
-        ws.onerror = () => {
-            ws.close()
-        }
-        const handle = (ws) => {
-            $('#text-normal').click(function (e) {
-                e.preventDefault();
-                $('#text-normal').attr('disabled', '');
-                const nohp = $('#phonenumber').val();
-                const text = $('#autosize-demo').val();
-                ws.send(JSON.stringify(
-                    {
-                        "model": "text",
-                        "type": "send",
-                        "nohp": nohp,
-                        "text": text
-                    }, null, 2
-                ))
-                toastr.success('Message has been Sent');
-            });
-        }
-    </script>
+    <script src="<?=base_url().'js/ws.js'?>"></script>
 </body>
 </html>
