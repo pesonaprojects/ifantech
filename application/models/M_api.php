@@ -20,11 +20,12 @@ class M_api extends CI_Model
 		$userid = $GetME['id'];
 		$Device_key = $this->input->get_request_header('Device-Key', true);
 		$query = $this->db->query("SELECT * FROM i_device WHERE devicekey='$Device_key' AND deviceuser='$userid'");
-		if ($query->num_rows() > 0) {
-			return true;
-		}else{
-			return json_output(401,array('status' => 401,'message' => 'Device Key Invalid.'));
-		}
+		return json_output(200,array('status' => 200,'API KEY' => $Api_key,'GETME' => $userid));
+		// if ($query->num_rows() > 0) {
+		// 	return true;
+		// }else{
+		// 	return json_output(200,array('status' => 200,'API KEY' => $Api_key,'GETME' => $userid));
+		// }
 	}
 
 	public function ShowMeContacts()
