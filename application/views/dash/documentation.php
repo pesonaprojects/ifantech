@@ -205,12 +205,36 @@ data-template="vertical-menu-template-no-customizer"
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade show active" id="navs-text" role="tabpanel">
                                                             <p>Text Message.</p>
-                                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "msg" => "Your Message",
+  "phonenumber" => "Receipt Number",
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'/api/message/text',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-media" role="tabpanel">
                                                             <p>Media.</p>
