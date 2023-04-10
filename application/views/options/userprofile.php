@@ -37,22 +37,7 @@ $GetUsers = $this->db->get_where('i_users', ['id' => $userid])->row_array();
             <div class="dropdown-divider"></div>
         </li>
         <li>
-            <a class="dropdown-item" href="<?=base_url().'help'?>">
-                <i class="bx bx-support me-2"></i>
-                <span class="align-middle" data-i18n="Help">Help</span>
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="<?=base_url().'faq'?>">
-                <i class="bx bx-help-circle me-2"></i>
-                <span class="align-middle" data-i18n="FAQ">FAQ</span>
-            </a>
-        </li>
-        <li>
-            <div class="dropdown-divider"></div>
-        </li>
-        <li>
-            <a class="dropdown-item" href="<?=base_url().'logout'?>" target="_blank">
+            <a class="dropdown-item" href="<?=base_url().'logout'?>">
                 <i class="bx bx-power-off me-2"></i>
                 <span class="align-middle" data-i18n="Log Out">Log Out</span>
             </a>

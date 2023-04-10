@@ -7,10 +7,10 @@ $autoload['libraries'] = array('database','session','user_agent','upload');
 
 $autoload['drivers'] = array();
 
-$autoload['helper'] = array('url','form','file','html','string','date','text','app');
+$autoload['helper'] = array('url','form','file','html','string','date','text','app','json');
 
 $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array('m_auth','m_data');
+$autoload['model'] = array('m_auth','m_data','m_api','m_send');

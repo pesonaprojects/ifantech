@@ -149,62 +149,203 @@ data-template="vertical-menu-template-no-customizer"
             	<div class="content-wrapper">
             		<div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-xl-12">
-                                <h6 class="text-muted">Documentations</h6>
-                                <div class="nav-align-left mb-4">
-                                    <ul class="nav nav-tabs" role="tablist">
+                            <div class="col-xl-3 col-lg-4 col-md-4 mb-lg-0 mb-4">
+                                <h5>eCommerce</h5>
+                                <div class="nav-align-left">
+                                    <ul class="nav nav-pills w-100 gap-1">
                                         <li class="nav-item">
-                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-home" aria-controls="navs-left-home" aria-selected="true">Home</button>
+                                            <button class="nav-link active" data-bs-target="#navs-home" data-bs-toggle="tab" role="tab" aria-controls="navs-home" aria-selected="false">Home</button>
                                         </li>
                                         <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Check Number</button>
+                                            <button class="nav-link" data-bs-target="#navs-n-messages" data-bs-toggle="tab" role="tab" aria-controls="navs-n-messages" aria-selected="false">Normal Message</button>
                                         </li>
                                         <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Add Contact</button>
+                                            <button class="nav-link" data-bs-target="#navs-b-messages" data-bs-toggle="tab" role="tab" aria-controls="navs-b-messages" aria-selected="false">Button Message</button>
                                         </li>
                                         <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Contact List</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Add Label</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Label List</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Broadcast</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Text Message</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Media Message</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Button Message</button>
-                                        </li>
-                                        <li class="nav-item">
-                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-left-profile" aria-controls="navs-left-profile" aria-selected="false">Location Message</button>
+                                            <button class="nav-link" data-bs-target="#navs-contact" data-bs-toggle="tab" role="tab" aria-controls="navs-contact" aria-selected="false">Contacts</button>
                                         </li>
                                     </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active" id="navs-left-home">
-                                            <p>
-                                                Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps
-                                                powder. Bear claw candy topping.
-                                            </p>
-                                            <p class="mb-0">
-                                                Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
-                                                jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
-                                                jujubes sweet.
-                                            </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-9 col-lg-8 col-md-8">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade card overflow-hidden show active" id="navs-home">
+                                        <div class="card-body">
+                                            <h4 class="d-flex align-items-center mt-2 mb-4">
+                                                <span class="badge bg-label-secondary p-2 rounded me-3">
+                                                    <i class="bx bx-home bx-sm"></i>
+                                                </span>WAAPI.es
+                                            </h4>
+                                            <p>Endpoint URL : <?=base_url().''?></p>
+                                            <div class="d-flex justify-content-between flex-wrap gap-3 my-4">
+                                                <h6>Still need help? <a href="javascript:void(0);">Contact us?</a></h6>
+                                            </div>
                                         </div>
-                                        <div class="tab-pane fade" id="navs-left-profile">
-                                            <p>
-                                                Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                                                cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
-                                                cheesecake fruitcake.
-                                            </p>
+                                    </div>
+                                    <div class="tab-pane fade card overflow-hidden" id="navs-n-messages">
+                                        <div class="card-body">
+                                            <div class="col-xl-12">
+                                                <h6 class="text-muted">Normal Message</h6>
+                                                <div class="nav-align-top mb-4">
+                                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-text" aria-controls="navs-text" aria-selected="true">Text</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-media" aria-controls="navs-media" aria-selected="true">Image</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-doc" aria-controls="navs-doc" aria-selected="true">Doc</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-loc" aria-controls="navs-loc" aria-selected="true">Locations
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="navs-text" role="tabpanel">
+                                                            <p>Text Message.</p>
+                                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-media" role="tabpanel">
+                                                            <p>Media.</p>
+                                                            <p class="mb-0">Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-doc" role="tabpanel">
+                                                            <p>Document.</p>
+                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-loc" role="tabpanel">
+                                                            <p>Locations.</p>
+                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade card overflow-hidden" id="navs-b-messages">
+                                        <div class="card-body">
+                                            <div class="col-xl-12">
+                                                <h6 class="text-muted">Normal Message</h6>
+                                                <div class="nav-align-top mb-4">
+                                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-list" aria-controls="navs-list" aria-selected="true">List</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-respons" aria-controls="navs-respons" aria-selected="true">Respons</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-link" aria-controls="navs-link" aria-selected="true">Link</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-copy" aria-controls="navs-copy" aria-selected="true">Copy</button>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="navs-list" role="tabpanel">
+                                                            <p>List.</p>
+                                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-respons" role="tabpanel">
+                                                            <p>Respons.</p>
+                                                            <p class="mb-0">Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-link" role="tabpanel">
+                                                            <p>Link.</p>
+                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-copy" role="tabpanel">
+                                                            <p>Copy.</p>
+                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade card overflow-hidden" id="navs-contact">
+                                        <div class="card-body">
+                                            <div class="col-xl-12">
+                                                <h6 class="text-muted">Contact</h6>
+                                                <div class="nav-align-top mb-4">
+                                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-show-contact" aria-controls="navs-show-contact" aria-selected="true">Show</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-add-contact" aria-controls="navs-add-contact" aria-selected="true">Add</button>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="navs-show-contact" role="tabpanel">
+                                                            <p>Show Contacts.</p>
+                                                            <code><pre>
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'/api/contacts/show',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key'
+  ),
+));
+
+$response = curl_exec($curl);
+                                                            </pre></code>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-add-contact" role="tabpanel">
+                                                            <p>Add Contact.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "name" => contact name,
+  "contacts" => phonenumber,
+  "label" => "", //make empty if u not have label ID
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint."api/contacts/add", //You Can Show Endpoint on Home TAB
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your API-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+</pre></code>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

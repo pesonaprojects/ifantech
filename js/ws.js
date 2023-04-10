@@ -1,7 +1,7 @@
 toastr.options = {
     "closeButton": true,
     "debug": false,
-    "newestOnTop": false,
+    "newestOnTop": true,
     "progressBar": true,
     "positionClass": "toast-top-right",
     "preventDuplicates": false,
@@ -95,13 +95,10 @@ ws.onmessage = (ev) => {
                     } else {
                         var chunk = blob.webkitSlice(start, end);
                     }
-
                     ws.send(chunk);
-
                     start = end;
                     end = start + BYTES_PER_CHUNK;
                 }
-
                 ws.send(JSON.stringify({
                     "cmd" : 2,
                     "data" : blob.name,
@@ -109,9 +106,6 @@ ws.onmessage = (ev) => {
                     "text": data.data.text,
                     "model": data.data.model
                 }));
-
-                $('#text-image').removeAttr('disabled');
-                $('#btn-doc').removeAttr('disabled');
             }
             break;
             case 'qr':
@@ -139,7 +133,6 @@ const handle = (ws) => {
     });
     $('#text-normal').click(function (e) {
         e.preventDefault();
-        $('#text-normal').attr('disabled', '');
         const nohp = $('#phonenumber').val();
         const text = $('#autosize-demo').val();
         ws.send(JSON.stringify(
@@ -314,5 +307,68 @@ const handle = (ws) => {
             ), null, 2)
             toastr.success('Message has been Sent');
         }
+    });
+    $('#btn-list-add').click(function (e) { 
+        e.preventDefault();
+        $('#list-msg').append(`
+        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+            <label class="form-label" for="creditCardMask">Title</label>
+            <div class="input-group input-group-merge">
+                <input type="text" id="input-title-list" name="id" class="form-control credit-card-mask" placeholder="Button List Name" aria-describedby="creditCardMask2">
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
+            <label class="form-label" for="creditCardMask">Respons</label>
+            <div class="input-group input-group-merge">
+                <input type="text" id="input-res-list" name="id" class="form-control credit-card-mask" placeholder="Respons" aria-describedby="creditCardMask2">
+            </div>
+        </div>
+        `);
+    });
+    $('#btn-list').click(function (e) { 
+        e.preventDefault();
+        console.log('button list')
+        const nohp = $('#phonenumber-list').val();
+        const idlist = 1;
+        const btext = $('#input-btn-title-list').val();
+        const text = $('#input-text-caption-list').val();
+        const titles = getValues('#input-title-list')
+        const ress = getValues('#input-res-list')
+        const rows = []
+        const auto = []
+        for (let i = 0; i < titles.length; i++) {
+            const title = titles[i];
+            const res = ress[i];
+            const id = makeid(10)
+            rows.push({
+                "title": title,
+                "rowId": `${idlist}]${id}`
+            })
+            auto.push({
+                id: id,
+                reply: {
+                    text: res
+                },
+                file: null
+            })
+        }
+        ws.send(JSON.stringify(
+            {
+                "type": "send",
+                "nohp": nohp,
+                "id": idlist,
+                "model": "list",
+                "sections": [
+                    {
+                        "title": "",
+                        "rows": rows
+                    }
+                ],
+                "auto": auto,
+                "btext": btext,
+                "text": text
+            }
+        ), null, 2)
+        toastr.success('Message has been Sent');
     });
 }

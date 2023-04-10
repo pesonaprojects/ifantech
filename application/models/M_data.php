@@ -86,6 +86,16 @@ class M_data extends CI_Model
 		$result = $this->db->update('i_users');
 		return $result;
 	}
+	function RevokeAPI($userid,$api){
+		$hasil=$this->db->query("UPDATE i_users SET apikey='$api' WHERE id='$userid'");
+		return $hasil;
+	}
+	function ChangePass($userid,$hasNewPassword){
+		$result = $this->db->set('password', $hasNewPassword);
+		$result = $this->db->where('id',$userid);
+		$result = $this->db->update('i_users');
+		return $result;
+	}
 
 	//delete
 	function HapusContact($id)

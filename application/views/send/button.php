@@ -180,7 +180,7 @@ data-template="vertical-menu-template-no-customizer"
                                                 <div class="tab-pane fade show active" id="button-list" role="tabpanel">
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Phone</label>
-                                                        <select id="selectpickerBasic" class="selectpicker w-100" data-style="btn-default">
+                                                        <select id="phonenumber-list" class="selectpicker w-100" data-style="btn-default">
                                                             <?php foreach($contact->result() as $c): ?>
                                                                 <option value="<?=$c->contacts?>"><?=$c->name?> | <?=$c->contacts?></option>
                                                             <?php endforeach;?>
@@ -188,30 +188,33 @@ data-template="vertical-menu-template-no-customizer"
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Button Title</label>
-                                                        <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
+                                                        <input type="text" class="form-control" id="input-btn-title-list" name="id" placeholder="John Doe" aria-describedby="defaultFormControlHelp">
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="defaultFormControlInput" class="form-label">Text</label>
-                                                        <textarea id="autosize-demo" rows="3" class="form-control"></textarea>
+                                                        <textarea id="input-text-caption-list" name="id" rows="3" class="form-control"></textarea>
                                                     </div>
-                                                    <div class="row">
+                                                    <div class="row" id="list-msg">
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Title</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
-                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                                <input type="text" id="input-title-list" name="id" class="form-control credit-card-mask" placeholder="Button List Name" aria-describedby="creditCardMask2">
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6 col-md-12 col-sm-12 mb-4">
                                                             <label class="form-label" for="creditCardMask">Respons</label>
                                                             <div class="input-group input-group-merge">
-                                                                <input type="text" id="creditCardMask" name="creditCardMask" class="form-control credit-card-mask" placeholder="1356 3215 6548 7898" aria-describedby="creditCardMask2">
-                                                                <span class="input-group-text cursor-pointer p-1" id="creditCardMask2"><span class="card-type"></span></span>
+                                                                <input type="text" id="input-res-list" name="id" class="form-control credit-card-mask" placeholder="Respons" aria-describedby="creditCardMask2">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="mb-3">
-                                                        <button type="button" class="btn rounded-pill btn-primary">
+                                                        <button id="btn-list-add" type="button" class="btn rounded-pill btn-primary">
+                                                            <span class="tf-icons bx bx-plus"></span>&nbsp; Add
+                                                        </button>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <button id="btn-list" type="button" class="btn rounded-pill btn-primary">
                                                             <span class="tf-icons bx bx-send"></span>&nbsp; Send
                                                         </button>
                                                     </div>

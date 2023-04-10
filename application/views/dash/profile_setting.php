@@ -197,124 +197,63 @@ data-template="vertical-menu-template-no-customizer"
                                                 <form id="formAccountSettings" method="POST" onsubmit="return false">
                                                     <div class="row">
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="firstName" class="form-label">First Name</label>
-                                                            <input class="form-control" type="text" id="firstName" name="firstName" value="John" autofocus/>
+                                                            <label class="form-label">Fullname</label>
+                                                            <input class="form-control" type="text" value="<?=$fullname?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="lastName" class="form-label">Last Name</label>
-                                                            <input class="form-control" type="text" name="lastName" id="lastName" value="Doe" />
+                                                            <label class="form-label">Username</label>
+                                                            <input class="form-control" type="text" value="<?=$username?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="email" class="form-label">E-mail</label>
-                                                            <input class="form-control" type="text" name="email" value="john.doe@example.com" placeholder="john.doe@example.com"/>
+                                                            <label class="form-label">E-Mail</label>
+                                                            <input class="form-control" type="text" value="<?=$email?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="organization" class="form-label">Organization</label>
-                                                            <input type="text" class="form-control" id="organization" name="organization" value="PIXINVENT"/>
+                                                            <label class="form-label">Phone number</label>
+                                                            <input class="form-control" type="text" value="<?=$phone?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label class="form-label" for="phoneNumber">Phone Number</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <span class="input-group-text">US (+1)</span>
-                                                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="202 555 0111"/>
-                                                            </div>
+                                                            <label class="form-label">Role</label>
+                                                            <?php 
+                                                            if ($role == 1) {
+                                                                $role = "Admin";
+                                                            }elseif ($role == 2) {
+                                                                $role = "Member";
+                                                            } ?>
+                                                            <input class="form-control" type="text" value="<?=$role?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="address" class="form-label">Address</label>
-                                                            <input type="text" class="form-control" id="address" name="address" placeholder="Address" />
+                                                            <label class="form-label">Device</label>
+                                                            <?php 
+                                                            if ($device == 1) {
+                                                                $device = "Active";
+                                                            }elseif ($device == 0) {
+                                                                $device = "Not Set";
+                                                            } ?>
+                                                            <input class="form-control" type="text" value="<?=$device?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="state" class="form-label">State</label>
-                                                            <input class="form-control" type="text" id="state" name="state" placeholder="California" />
+                                                            <label class="form-label">status</label>
+                                                            <?php 
+                                                            if ($status == 1) {
+                                                                $status = "Active";
+                                                            }elseif ($status == 2) {
+                                                                $status = "Nonaktif";
+                                                            } ?>
+                                                            <input class="form-control" type="text" value="<?=$status?>" autofocus readonly/>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
-                                                            <label for="zipCode" class="form-label">Zip Code</label>
-                                                            <input type="text" class="form-control" id="zipCode" name="zipCode" placeholder="231465" maxlength="6"/>
+                                                            <label class="form-label">created</label>
+                                                            <?php  
+                                                            $created = date('d M Y - H:i:s',strtotime($created)) ?>
+                                                            <input class="form-control" type="text" value="<?=$created?>" autofocus readonly/>
                                                         </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="form-label" for="country">Country</label>
-                                                            <select id="country" class="select2 form-select">
-                                                                <option value="">Select</option>
-                                                                <option value="Australia">Australia</option>
-                                                                <option value="Bangladesh">Bangladesh</option>
-                                                                <option value="Belarus">Belarus</option>
-                                                                <option value="Brazil">Brazil</option>
-                                                                <option value="Canada">Canada</option>
-                                                                <option value="China">China</option>
-                                                                <option value="France">France</option>
-                                                                <option value="Germany">Germany</option>
-                                                                <option value="India">India</option>
-                                                                <option value="Indonesia">Indonesia</option>
-                                                                <option value="Israel">Israel</option>
-                                                                <option value="Italy">Italy</option>
-                                                                <option value="Japan">Japan</option>
-                                                                <option value="Korea">Korea, Republic of</option>
-                                                                <option value="Mexico">Mexico</option>
-                                                                <option value="Philippines">Philippines</option>
-                                                                <option value="Russia">Russian Federation</option>
-                                                                <option value="South Africa">South Africa</option>
-                                                                <option value="Thailand">Thailand</option>
-                                                                <option value="Turkey">Turkey</option>
-                                                                <option value="Ukraine">Ukraine</option>
-                                                                <option value="United Arab Emirates">United Arab Emirates</option>
-                                                                <option value="United Kingdom">United Kingdom</option>
-                                                                <option value="United States">United States</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="language" class="form-label">Language</label>
-                                                            <select id="language" class="select2 form-select">
-                                                                <option value="">Select Language</option>
-                                                                <option value="en">English</option>
-                                                                <option value="fr">French</option>
-                                                                <option value="de">German</option>
-                                                                <option value="pt">Portuguese</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="timeZones" class="form-label">Timezone</label>
-                                                            <select id="timeZones" class="select2 form-select">
-                                                                <option value="">Select Timezone</option>
-                                                                <option value="-12">(GMT-12:00) International Date Line West</option>
-                                                                <option value="-11">(GMT-11:00) Midway Island, Samoa</option>
-                                                                <option value="-10">(GMT-10:00) Hawaii</option>
-                                                                <option value="-9">(GMT-09:00) Alaska</option>
-                                                                <option value="-8">(GMT-08:00) Pacific Time (US & Canada)</option>
-                                                                <option value="-8">(GMT-08:00) Tijuana, Baja California</option>
-                                                                <option value="-7">(GMT-07:00) Arizona</option>
-                                                                <option value="-7">(GMT-07:00) Chihuahua, La Paz, Mazatlan</option>
-                                                                <option value="-7">(GMT-07:00) Mountain Time (US & Canada)</option>
-                                                                <option value="-6">(GMT-06:00) Central America</option>
-                                                                <option value="-6">(GMT-06:00) Central Time (US & Canada)</option>
-                                                                <option value="-6">(GMT-06:00) Guadalajara, Mexico City, Monterrey</option>
-                                                                <option value="-6">(GMT-06:00) Saskatchewan</option>
-                                                                <option value="-5">(GMT-05:00) Bogota, Lima, Quito, Rio Branco</option>
-                                                                <option value="-5">(GMT-05:00) Eastern Time (US & Canada)</option>
-                                                                <option value="-5">(GMT-05:00) Indiana (East)</option>
-                                                                <option value="-4">(GMT-04:00) Atlantic Time (Canada)</option>
-                                                                <option value="-4">(GMT-04:00) Caracas, La Paz</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label for="currency" class="form-label">Currency</label>
-                                                            <select id="currency" class="select2 form-select">
-                                                                <option value="">Select Currency</option>
-                                                                <option value="usd">USD</option>
-                                                                <option value="euro">Euro</option>
-                                                                <option value="pound">Pound</option>
-                                                                <option value="bitcoin">Bitcoin</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-2">
-                                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                                        <button type="reset" class="btn btn-label-secondary">Cancel</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="security" role="tabpanel">
-                                            <form id="formAccountSettings" method="POST" onsubmit="return false">
+                                            <form id="formAccountPassword" method="POST" onsubmit="return false">
                                                 <div class="row">
                                                     <div class="mb-3 col-md-6 form-password-toggle">
                                                         <label class="form-label" for="currentPassword">Current Password</label>
@@ -348,41 +287,45 @@ data-template="vertical-menu-template-no-customizer"
                                                         </ul>
                                                     </div>
                                                     <div class="col-12 mt-1">
-                                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                                        <button id="btnchangepass" type="submit" class="btn btn-primary me-2">Save changes</button>
                                                         <button type="reset" class="btn btn-label-secondary">Cancel</button>
                                                     </div>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="api-key" role="tabpanel">
-                                            <div class="mb-3 col-12 mb-0">
-                                                <div class="alert alert-warning">
-                                                    <h6 class="alert-heading mb-1">Are you sure you want to delete your account?</h6>
-                                                    <p class="mb-0">Once you delete your account, there is no going back. Please be certain.</p>
+                                            <div class="row">
+                                                <label class="form-label">API Key</label>
+                                                <div class="col-md-12 mb-3">
+                                                    <input class="form-control" id="clipboard-example" type="text" value="<?=$devicekey?>" readonly/>
+                                                </div>
+                                                <div class="col-md-2 col-sm-12">
+                                                    <button class="clipboard-btn btn btn-primary me-2" data-clipboard-action="copy" data-clipboard-target="#clipboard-example">Copy</button>
                                                 </div>
                                             </div>
+                                            <br>
                                             <form id="formAccountDeactivation" onsubmit="return false">
                                                 <div class="form-check mb-3">
-                                                    <input class="form-check-input" type="checkbox" name="accountActivation" id="accountActivation"/>
-                                                    <label class="form-check-label" for="accountActivation">I confirm my account deactivation</label>
+                                                    <input class="form-check-input" type="checkbox" name="checklist" id="checklist"/>
+                                                    <label class="form-check-label" for="accountActivation">I confirm to revoke API Key</label>
                                                 </div>
-                                                <button type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
+                                                <button id="btnrevoke" type="submit" class="btn btn-danger deactivate-account">Deactivate Account</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-            			</div>
-            		</div>
-            		<?php $this->load->view('options/footer') ?>
-            		<div class="content-backdrop fade"></div>
-            	</div>
+                        </div>
+                    </div>
+                    <?php $this->load->view('options/footer') ?>
+                    <div class="content-backdrop fade"></div>
+                </div>
             </div>
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
     </div>
-	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/bootstrap.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'?>"></script>
@@ -398,11 +341,91 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/clipboard/clipboard.js'?>"></script>
+    <script src="<?=base_url().'assets/js/extended-ui-misc-clipboardjs.js'?>"></script>
+    <script src="<?=base_url().'js/base64.min.js'?>"></script>
+    <script src="<?=base_url().'js/md5.min.js'?>"></script>
     <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
         $(document).ready(function(){
+            getapikey();
             show_picture();
             var userid = '<?=$this->session->userdata('userid')?>';
-            var baseurl = '<?=base_url()?>assets/img/users/';
+            var img_dir = '<?=base_url()?>assets/img/users/';
+            function getapikey() {
+                $.ajax({
+                    type : 'GET',
+                    url : '<?php echo base_url()?>ajax/profile/GetApi',
+                    async : true,
+                    success : function(data) {
+                        $('#clipboard-example').val(data)
+                    }
+                });
+            }
+            $('#btnrevoke').on('click',function(){
+                const cb = document.querySelector('#checklist')
+                if (cb.checked == true) {
+                    $.ajax({
+                        type : "POST",
+                        url  : "<?php echo base_url('ajax/profile/revoke')?>",
+                        dataType : "JSON",
+                        data : {userid:userid},
+                        success: function(data){
+                            $('[name="checklist"]').val("");
+                            getapikey();
+                            toastr.success('Revoke APIKey Successfully');
+                        }
+                    });
+                    return false;
+                }else{
+                    toastr.warning('Please Check Confirm before click button');
+                }
+            });
+            $('#btnchangepass').on('click', function() {
+                const currentPassword = $('#currentPassword').val();
+                const newPassword = $('#newPassword').val();
+                const confirmPassword = $('#confirmPassword').val();
+                const hash = Base64.encode(md5(currentPassword));
+                const LastPassword = "<?=$password?>";
+                const hasNewPassword = Base64.encode(md5(newPassword));
+                if(LastPassword == hash){
+                    if(newPassword == confirmPassword){
+                        $.ajax({
+                            type : "POST",
+                            url  : "<?php echo base_url('ajax/profile/ChangePassword')?>",
+                            dataType : "JSON",
+                            data : {userid:userid, hasNewPassword:hasNewPassword},
+                            success: function(data){
+                                $('#currentPassword').val("");
+                                $('#newPassword').val("");
+                                $('#confirmPassword').val("");
+                                toastr.success('Change Password Successfully');
+                            }
+                        });
+                        return false;
+                    }else{
+                        toastr.warning('Confirmasi Password not Valid');
+                    }
+                }else{
+                    toastr.warning('Current Password not Valid');
+                }
+            });
             function show_picture() {
                 $.ajax({
                     type  : 'GET',
@@ -413,46 +436,12 @@ data-template="vertical-menu-template-no-customizer"
                         var html = '';
                         var i;
                         for(i=0; i<data.length; i++){
-                            html += '<img src="'+baseurl+data[i].image+'" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>';
+                            html += '<img src="'+img_dir+data[i].image+'" alt="user-avatar" class="d-block rounded" height="100" width="100" id="uploadedAvatar"/>';
                         }
                         $('#image').html(html);
-                        console.log(data)
                     }
                 });
             }
-
-            $('#data_server').on('click','.show',function(){
-                var id=$(this).attr('data');
-                console.log(id)
-                $.ajax({
-                    type  : 'POST',
-                    url   : '<?php echo base_url()?>ajax/server/load_server',
-                    data : {id:id},
-                    success: function(data){
-                        $('#load_data').html(data);
-                    }
-                });
-            });
-
-            $('#btn_simpan').on('click',function(){
-                var name=$('#name').val();
-                var host=$('#host').val();
-                $.ajax({
-                    type : "POST",
-                    url  : "<?php echo base_url()?>ajax/server/add_server",
-                    dataType : "JSON",
-                    data : {name:name , host:host},
-                    success: function(data){
-                        $('[name="name"]').val("");
-                        $('[name="host"]').val("");
-                        data_server();
-                    }
-                });
-                return false;
-            });
-            $("#btn_reload").on('click',function(){
-                data_server();
-            });
         });
     </script>
 </body>
