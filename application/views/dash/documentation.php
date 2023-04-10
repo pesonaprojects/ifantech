@@ -209,12 +209,13 @@ data-template="vertical-menu-template-no-customizer"
 $curl = curl_init();
 $dataarr = [
   "deviceid" => "Your Device ID",
-  "msg" => "Your Message",
+  "type" => "text",
   "phonenumber" => "Receipt Number",
+  "msg" => "Your Message",
 ];
 $datajson = json_encode($dataarr, true);
 curl_setopt_array($curl, array(
-  CURLOPT_URL => $endpoint.'/api/message/text',
+  CURLOPT_URL => $endpoint.'api/message/send',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -246,7 +247,38 @@ echo $response;
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-loc" role="tabpanel">
                                                             <p>Locations.</p>
-                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "type" => "location",
+  "phonenumber" => "Receipt Number",
+  "lat" => "51.10363646785272",
+  "long" => "5.894508361816407",
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -256,7 +288,7 @@ echo $response;
                                     <div class="tab-pane fade card overflow-hidden" id="navs-b-messages">
                                         <div class="card-body">
                                             <div class="col-xl-12">
-                                                <h6 class="text-muted">Normal Message</h6>
+                                                <h6 class="text-muted">Button Message</h6>
                                                 <div class="nav-align-top mb-4">
                                                     <ul class="nav nav-pills mb-3" role="tablist">
                                                         <li class="nav-item">
@@ -288,11 +320,79 @@ echo $response;
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-link" role="tabpanel">
                                                             <p>Link.</p>
-                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "type" => "button-link",
+  "phonenumber" => "Receipt Number",
+  "text" => "Visit Our Website",
+  "button": {
+    "text": "Visit",
+    "url": "http://waapi.es"
+  },
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-copy" role="tabpanel">
                                                             <p>Copy.</p>
-                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "type" => "button-copy",
+  "phonenumber" => "Receipt Number",
+  "text" => "Copy Text",
+  "button": {
+    "text": "Copy",
+    "textCopy": "Im Here"
+  },
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -319,7 +419,7 @@ echo $response;
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => $endpoint.'/api/contacts/show',
+  CURLOPT_URL => $endpoint.'api/contacts/show',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,

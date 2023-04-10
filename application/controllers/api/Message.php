@@ -2,7 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Message extends CI_Controller
 {
-	function text()
+	function __construct()
+	{
+		parent::__construct();
+		error_reporting(0);
+	}
+	function send()
 	{
 		$method = $_SERVER['REQUEST_METHOD'];
 		if($method != 'POST'){
@@ -13,12 +18,20 @@ class Message extends CI_Controller
 			if ($check_apikey == true) {
 				if ($check_devicekey == true) {
 					$params = json_decode(file_get_contents('php://input'), TRUE);
-					if ($params['deviceid'] == "" || $params['msg'] == "" || $params['phonenumber'] == "") {
+					if ($params['deviceid'] == "" || $params['phonenumber'] == "") {
 						$respStatus = 400;
-						$resp = array('status' => 400,'message' =>  'Name & Contact can\'t empty');
+						$resp = array('status' => 400,'message' =>  'Device ID and Phone Number cant empty');
 					}else{
-						$respStatus = 201;
-						$resp = $this->m_send->SendText($params);
+						$respStatus = 200;
+						if ($params['type'] == "text") {
+							$resp = $this->m_send->SendText($params);
+						}elseif ($params['type'] == "locations") {
+							$resp = $this->m_send->SendLocations($params);
+						}elseif ($params['type'] == "button-link") {
+							$resp = $this->m_send->SendURL($params);
+						}elseif ($params['type'] == "button-copy") {
+							$resp = $this->m_send->SendCopy($params);
+						}
 					}
 					json_output($respStatus,$resp);
 				}
