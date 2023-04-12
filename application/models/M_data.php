@@ -30,6 +30,11 @@ class M_data extends CI_Model
 		$result = $this->db->insert('i_broadcast', $data);
 		return $result;
 	}
+	function CreateAccount($data)
+	{
+		$result = $this->db->insert('i_users', $data);
+		return $result;
+	}
 
 	//read
 	function LabelByUser($userid)

@@ -30,6 +30,7 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/css/pages/page-profile.css'?>" />
     <script src="<?=base_url().'assets/vendor/js/helpers.js'?>"></script>
     <script src="<?=base_url().'assets/js/config.js'?>"></script>
+    <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
     <div class="layout-wrapper layout-content-navbar">
@@ -157,17 +158,43 @@ data-template="vertical-menu-template-no-customizer"
                                 <div class="card mb-4">
                                     <h5 class="card-header">Settings</h5>
                                     <div class="card-body">
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label">Web Icon</label>
-                                            <input class="form-control" type="file" id="formFileMultiple" multiple="">
-                                        </div>
-                                        <div>
-                                            <label for="defaultFormControlInput" class="form-label">Name</label>
-                                            <input type="text" class="form-control" id="defaultFormControlInput" placeholder="John Doe" aria-describedby="defaultFormControlHelp"/>
-                                            <div id="defaultFormControlHelp" class="form-text">
-                                                We'll never share your details with anyone else.
+                                        <form action="" method="POST">
+                                            <div class="mb-2">
+                                                <label class="form-label">Name</label>
+                                                <input type="text" class="form-control" placeholder="John Doe" id="webname" disabled/>
+                                                <div class="form-text">
+                                                    We'll never share your details with anyone else.
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Web Logo</label>
+                                                <input class="form-control" type="file" id="formFileMultiple" multiple="" disabled>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Web Icon</label>
+                                                <input class="form-control" type="file" id="formFileMultiple" multiple="" disabled>
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="form-label">Web WA Admin</label>
+                                                <select class="form-control mb-2" disabled>
+                                                    <option>1</option>
+                                                    <option>1</option>
+                                                    <option>1</option>
+                                                    <option>1</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-pie-chart-alt"></span>&nbsp; Submit
+                                                </button>
+                                                <button type="button" id="cancel" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-x"></span>&nbsp; Cancel
+                                                </button>
+                                                <button type="button" id="edit" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-pencil"></span>&nbsp; Edit
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +222,52 @@ data-template="vertical-menu-template-no-customizer"
     <script src="<?=base_url().'assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-profile.js'?>"></script>
-    <script src="<?=base_url().'assets/js/pages-account-settings-account.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script>
+        $(document).ready(function(){
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            $('#edit').on('click',function(){
+                $('#webname').removeAttr('disabled');
+                console.log('edit')
+                // var bc_name=$('#bc_name').val();
+                // var bc_device=$('#bc_device').val();
+                // var userid=$('#userid').val();
+                // var bc_contact=$('#bc_contact').val();
+                // var bc_contact=$('#bc_contact').val();
+                // var bc_time=$('#bs-datepicker-autoclose').val();
+                // var bc_msg=$('#autosize-demo').val();
+                // $.ajax({
+                //     type: "POST",
+                //     url: "<?php echo base_url()?>ajax/bc/add",
+                //     dataType : "JSON",
+                //     data: {userid:userid, bc_name:bc_name, bc_device:bc_device, bc_contact:bc_contact, bc_time:bc_time, bc_msg:bc_msg},
+                //     success: function(data){
+                //         document.contactform.reset();
+                //         toastr.success("Broadcast Has Been Submit");
+                //     }
+                // });
+            });
+            $('#cancel').on('click',function(){
+                $('#webname').attr('disabled', '');
+                console.log('cancel')
+            });
+        });
+    </script>
 </body>
 </html>
