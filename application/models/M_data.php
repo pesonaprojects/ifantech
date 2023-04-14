@@ -67,6 +67,11 @@ class M_data extends CI_Model
 		$result = $this->db->query("SELECT * FROM i_broadcast WHERE bc_users='$userid'");
 		return $result;
 	}
+	function AllServer()
+	{
+		$result = $this->db->query("SELECT * FROM i_server");
+		return $result;
+	}
 	function server_list(){
 		$hasil=$this->db->query("SELECT * FROM i_server");
 		return $hasil->result();

@@ -35,6 +35,10 @@ class Server extends CI_Controller
 								<td>Host</td>
 								<td><?=$GetServer['host']?></td>
 							</tr>
+							<tr>
+								<td>Server Monitoring</td>
+								<td><a href="http://<?=$GetServer['host']?>:19999" target="_blank">Link</a></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

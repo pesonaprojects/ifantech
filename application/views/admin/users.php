@@ -284,6 +284,7 @@ data-template="vertical-menu-template-no-customizer"
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
+        console.log(<?=$this->session->flashdata('success')?>)
         <?php 
         if ($this->session->flashdata('success')) { ?>
             toastr.success("<?php echo $this->session->flashdata('success'); ?>");

@@ -13,4 +13,4 @@ $autoload['config'] = array();
 
 $autoload['language'] = array();
 
-$autoload['model'] = array('m_auth','m_data','m_api','m_send');
+$autoload['model'] = array('m_auth','m_data','m_api','m_send','m_notif');

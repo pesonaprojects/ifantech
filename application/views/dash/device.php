@@ -238,7 +238,7 @@ data-template="vertical-menu-template-no-customizer"
                                         <div class="mb-3">
                                             <button type="button" name="btn-scan" id="btn-scan" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal">
                                                 <span class="tf-icons bx bx-qr-scan" title="Scan QR"></span>
-                                          </button>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
