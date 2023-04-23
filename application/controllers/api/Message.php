@@ -38,4 +38,27 @@ class Message extends CI_Controller
 			}
 		}
 	}
+	function read()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'POST'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_apikey = $this->m_api->check_api_key();
+			$check_devicekey = $this->m_api->check_device_key();
+			if ($check_apikey == true) {
+				if ($check_devicekey == true) {
+					$params = json_decode(file_get_contents('php://input'), TRUE);
+					if ($params['deviceid'] == "") {
+						$respStatus = 400;
+						$resp = array('status' => 400,'message' =>  'Device ID cant empty');
+					}else{
+						$respStatus = 200;
+						$resp = $this->m_api->readMessage($params);
+					}
+					json_output($respStatus,$resp);
+				}
+			}
+		}
+	}
 } ?>

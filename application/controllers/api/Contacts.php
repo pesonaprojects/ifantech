@@ -38,4 +38,24 @@ class Contacts extends CI_Controller
 			}
 		}
 	}
+	public function check()
+	{
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'POST'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			$check_apikey = $this->m_api->check_api_key();
+			if ($check_apikey == true) {
+				$params = json_decode(file_get_contents('php://input'), TRUE);
+				if ($params['phonenumber'] == "") {
+					$respStatus = 400;
+					$resp = array('status' => 400,'message' =>  'Phone Number cant empty');
+				}else{
+					$respStatus = 200;
+					$resp = $this->m_api->CheckPhone($params);
+				}
+				json_output($respStatus,$resp);
+			}
+		}
+	}
 } ?>

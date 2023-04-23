@@ -157,6 +157,9 @@ data-template="vertical-menu-template-no-customizer"
                                             <button class="nav-link active" data-bs-target="#navs-home" data-bs-toggle="tab" role="tab" aria-controls="navs-home" aria-selected="false">Home</button>
                                         </li>
                                         <li class="nav-item">
+                                            <button class="nav-link" data-bs-target="#navs-messages" data-bs-toggle="tab" role="tab" aria-controls="navs-messages" aria-selected="false">Message</button>
+                                        </li>
+                                        <li class="nav-item">
                                             <button class="nav-link" data-bs-target="#navs-n-messages" data-bs-toggle="tab" role="tab" aria-controls="navs-n-messages" aria-selected="false">Normal Message</button>
                                         </li>
                                         <li class="nav-item">
@@ -180,6 +183,88 @@ data-template="vertical-menu-template-no-customizer"
                                             <p>Endpoint URL : <?=base_url().''?></p>
                                             <div class="d-flex justify-content-between flex-wrap gap-3 my-4">
                                                 <h6>Still need help? <a href="javascript:void(0);">Contact us?</a></h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade card overflow-hidden" id="navs-messages">
+                                        <div class="card-body">
+                                            <div class="col-xl-12">
+                                                <h6 class="text-muted">Message</h6>
+                                                <div class="nav-align-top mb-4">
+                                                    <ul class="nav nav-pills mb-3" role="tablist">
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-chatlist" aria-controls="navs-chatlist" aria-selected="true">Chatlist</button>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-msg-info" aria-controls="navs-msg-info" aria-selected="true">Message Detail</button>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content">
+                                                        <div class="tab-pane fade show active" id="navs-chatlist" role="tabpanel">
+                                                            <p>Chatlist.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID"
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/read',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-msg-info" role="tabpanel">
+                                                            <p>Message Info.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "phonenumber" => "Chat List Number"
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/read',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -239,11 +324,11 @@ echo $response;
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-media" role="tabpanel">
                                                             <p>Media.</p>
-                                                            <p class="mb-0">Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.</p>
+                                                            <p class="mb-0">Under Maintenance.</p>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-doc" role="tabpanel">
                                                             <p>Document.</p>
-                                                            <p class="mb-0">Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple pie brownie cake. Sweet roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert dessert. Pudding jelly jelly-o tart brownie jelly.</p>
+                                                            <p class="mb-0">Under Maintenance.</p>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-loc" role="tabpanel">
                                                             <p>Locations.</p>
@@ -307,16 +392,11 @@ echo $response;
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade show active" id="navs-list" role="tabpanel">
                                                             <p>List.</p>
-                                                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum..</p>
+                                                            <p class="mb-0">Under Maintenance.</p>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-respons" role="tabpanel">
                                                             <p>Respons.</p>
-                                                            <p class="mb-0">Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah cotton candy liquorice caramels.</p>
+                                                            <p class="mb-0">Under Maintenance.</p>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-link" role="tabpanel">
                                                             <p>Link.</p>
@@ -411,6 +491,9 @@ echo $response;
                                                         <li class="nav-item">
                                                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-add-contact" aria-controls="navs-add-contact" aria-selected="true">Add</button>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-check-contact" aria-controls="navs-check-contact" aria-selected="true">Check</button>
+                                                        </li>
                                                     </ul>
                                                     <div class="tab-content">
                                                         <div class="tab-pane fade show active" id="navs-show-contact" role="tabpanel">
@@ -440,13 +523,44 @@ $response = curl_exec($curl);
                                                             <code><pre>
 $curl = curl_init();
 $dataarr = [
-  "name" => contact name,
+  "deviceid" => contact name,
   "contacts" => phonenumber,
   "label" => "", //make empty if u not have label ID
 ];
 $datajson = json_encode($dataarr, true);
 curl_setopt_array($curl, array(
   CURLOPT_URL => $endpoint."api/contacts/add", //You Can Show Endpoint on Home TAB
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your API-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+</pre></code>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="navs-check-contact" role="tabpanel">
+                                                            <p>Check Contact.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => deviceid, //Your Device ID
+  "phonenumber" => phonenumber
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint."api/contacts/check", //You Can Show Endpoint on Home TAB
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
