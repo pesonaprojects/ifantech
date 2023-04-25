@@ -11,8 +11,8 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       with:
-        server: meayudas1.dyndns.org
-        username: github187
-        password: DEGKanSLzi2PynrZ
-        method: ftp
-        port: 12
+        FTP_SERVER: meayudas1.dyndns.org
+        FTP_USERNAME: github187
+        FTP_PASSWORD: DEGKanSLzi2PynrZ
+        METHOD: ftp
+        PORT: 12
