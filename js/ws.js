@@ -30,7 +30,7 @@ function makeid(length) {
 }
 const server = $('#host').attr('data');
 const id = $('#deviceid').attr('data');
-ws = new WebSocket(`ws://${server}?token=${id}`);
+ws = new WebSocket(`${server}?token=${id}`);
 ws.onopen = () => {
     console.log('connect')
     handle(ws)
