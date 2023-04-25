@@ -190,7 +190,11 @@ data-template="vertical-menu-template-no-customizer"
                                                         <span class="badge bg-label-error me-1">Nonaktif</span>
                                                     <?php } ?>
                                                 </td>
-                                                <td><button></button></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-icon btn-primary">
+                                                        <span class="tf-icons bx bx-pie-chart-alt"></span>
+                                                    </button>
+                                                </td>
                                             </tr>
                                         <?php endforeach;?>
                                     </tbody>
