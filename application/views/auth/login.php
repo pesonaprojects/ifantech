@@ -69,10 +69,6 @@ data-template="vertical-menu-template-no-customizer"
 							<div class="mb-3">
 								<button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
 							</div>
-							<div>
-								<span>Username : admin</span><br>
-								<span>Password : admin</span>
-							</div>
 						</form>
 					</div>
 				</div>

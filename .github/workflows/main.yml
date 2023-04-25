@@ -1,22 +1,17 @@
-
-name: Update Waapi.ex
-on:
-  push:
-    branches:
-      - master
+on: push
+name: 🚀 Pesona Projetcs
 jobs:
-  cd:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy Using ssh
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            cd /www/wwwroot/waapi.es
-            git pull origin master
-            git status
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: meayudas1.dyndns.org
+        port: 12
+        username: github187
+        password: DEGKanSLzi2PynrZ

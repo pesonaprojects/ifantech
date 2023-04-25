@@ -18,10 +18,6 @@ class Admin extends CI_Controller {
 		$data['web_name'] = $GetSetting['web_name'];
 		$data['web_logo'] = $GetSetting['web_logo'];
 		$data['web_icon'] = $GetSetting['web_icon'];
-		$web_wa_host = $GetSetting['web_wa_host'];
-		$GetHost = $this->db->get_where('i_server', ['id' => $web_wa_host])->row_array();
-		$data['host'] = $GetHost['host'];
-		$data['web_wa_id'] = $GetSetting['web_wa_id'];
 		$this->load->view('admin/settings',$data);
 	}
 	public function users()
@@ -40,7 +36,7 @@ class Admin extends CI_Controller {
 		$phone = $this->input->post('phone');
 		$username = explode("@",$email);
 		$username = preg_replace("/[^a-zA-Z0-9]/", "", $username[0]);
-		$password = substr(sha1(rand()), 0, 5);
+		$password = $this->input->post('password');
 		$apikey = substr(sha1(rand()), 0, 25);
 		$hash = base64_encode(md5($password));
 		$base = base_url();
@@ -56,8 +52,6 @@ class Admin extends CI_Controller {
 				'role' => 2,
 				'status	' => 1
 			];
-			$text = "Hello $fullname\n\nYour Account Has been created\n\nUsername : $username\nPassword : $password\nLogin at $base";
-			$this->m_notif->SendWhatsapp($phone,$text);
 			$this->m_data->CreateAccount($data);
 			$url = base_url().'admin/users';
 			echo $this->session->set_flashdata('success','Your Account Has Been Created');

@@ -229,10 +229,13 @@ data-template="vertical-menu-template-no-customizer"
                                     <input type="text" name="phone" class="form-control" placeholder="Phone"/>
                                 </div>
                                 <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="password"/>
+                                </div>
+                                <div class="mb-3">
                                     <button type="submit" class="btn btn-primary mb-2 d-grid w-100">Continue</button>
                                     <button type="button" class="btn btn-label-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button>
                                 </div>
-                                
                             </form>
                         </div>
                     </div>
