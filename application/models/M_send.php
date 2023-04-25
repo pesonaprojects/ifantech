@@ -21,7 +21,7 @@ class M_send extends CI_Model
 			];
 			$datajson = json_encode($dataarr, true);
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://'.$GetHost['host'].'/send',
+				CURLOPT_URL => $GetHost['apihit'].'/send',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
@@ -62,7 +62,7 @@ class M_send extends CI_Model
 			];
 			$datajson = json_encode($dataarr, true);
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://'.$GetHost['host'].'/send',
+				CURLOPT_URL => $GetHost['apihit'].'/send',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
@@ -104,7 +104,7 @@ class M_send extends CI_Model
 			];
 			$datajson = json_encode($dataarr, true);
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://'.$GetHost['host'].'/send',
+				CURLOPT_URL => $GetHost['apihit'].'/send',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
@@ -146,7 +146,7 @@ class M_send extends CI_Model
 			];
 			$datajson = json_encode($dataarr, true);
 			curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://'.$GetHost['host'].'/send',
+				CURLOPT_URL => $GetHost['apihit'].'/send',
 				CURLOPT_RETURNTRANSFER => true,
 				CURLOPT_ENCODING => '',
 				CURLOPT_MAXREDIRS => 10,
