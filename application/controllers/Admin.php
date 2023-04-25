@@ -25,6 +25,10 @@ class Admin extends CI_Controller {
 		$data['users'] = $this->m_data->AllUsers();
 		$this->load->view('admin/users',$data);
 	}
+	public function detail($id)
+	{
+		echo $id;
+	}
 	public function server()
 	{
 		$this->load->view('admin/server');

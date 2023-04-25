@@ -11,6 +11,8 @@ application/config/database.php
 !application/*/.htaccess
 .htaccess
 
+assets/img/website/*
+
 composer.lock
 user_guide_src/build/*
 user_guide_src/cilexer/build/*

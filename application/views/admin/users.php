@@ -191,9 +191,9 @@ data-template="vertical-menu-template-no-customizer"
                                                     <?php } ?>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-icon btn-primary">
-                                                        <span class="tf-icons bx bx-pie-chart-alt"></span>
-                                                    </button>
+                                                    <a href="<?=base_url().'admin/users/detail/id='.$u->id?>" class="btn btn-icon btn-primary">
+                                                        <span class="tf-icons fa fa-eye"></span>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>
