@@ -328,7 +328,7 @@ echo $response;
 $curl = curl_init();
 $dataarr = [
   "deviceid" => "Your Device ID",
-  "type" => "text",
+  "type" => "media",
   "phonenumber" => "Receipt Number",
   "msg" => "Your Message",
   "mediaurl" => "https://waapi.es/mediatest/image.png",
@@ -364,7 +364,7 @@ echo $response;
 $curl = curl_init();
 $dataarr = [
   "deviceid" => "Your Device ID",
-  "type" => "text",
+  "type" => "media",
   "phonenumber" => "Receipt Number",
   "msg" => "Your Message",
   "mediaurl" => "https://waapi.es/mediatest/doc.ai",
