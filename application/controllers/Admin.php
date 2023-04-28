@@ -27,7 +27,16 @@ class Admin extends CI_Controller {
 	}
 	public function detail($id)
 	{
-		echo $id;
+		$GetData = $this->db->get_where('i_users', ['id' => $id])->row_array();
+		$data['id'] = $id;
+		$data['fullname'] = $GetData['fullname'];
+		$data['username'] = $GetData['username'];
+		$data['email'] = $GetData['email'];
+		$data['phone'] = $GetData['phone'];
+		$data['role'] = $GetData['role'];
+		$data['status'] = $GetData['status'];
+		$data['created'] = date('d-M-Y H:i:s',strtotime($GetData['created']));
+		$this->load->view('admin/users_detail',$data);
 	}
 	public function server()
 	{
@@ -65,6 +74,37 @@ class Admin extends CI_Controller {
 			echo $this->session->set_flashdata('error','Email or Phone Number Has Already use');
 			redirect($url);
 		}
+	}
+	public function edit_users()
+	{
+		$id = $this->input->post('id');
+		$fullname = $this->input->post('fullname');
+		$role = $this->input->post('role');
+		$status = $this->input->post('status');
+		echo $status;
+		if ($fullname == "" || $role == "" || $status == "") {
+			$url = base_url().'admin/users/detail/id='.$id;
+			echo $this->session->set_flashdata('warning','Data Cant Empty');
+			redirect($url);
+		}else{
+			$data = [
+				'fullname' => $fullname,
+				'role' => $role,
+				'status' => $status
+			];
+			$this->m_data->EditUsers($data,$id);
+			$url = base_url().'admin/users/detail/id='.$id;
+			echo $this->session->set_flashdata('success','Data Has Been Change');
+			redirect($url);
+		}
+	}
+	public function delete_users()
+	{
+		$id = $this->input->post('id');
+		$this->m_data->DeleteUsers($id);
+		$url = base_url().'admin/users';
+		echo $this->session->set_flashdata('success','Data Has Been Deleted');
+		redirect($url);
 	}
 	public function setupweb()
 	{

@@ -8,7 +8,7 @@ data-assets-path="<?=base_url().'assets/'?>"
 data-template="vertical-menu-template-no-customizer"
 >
 <head>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <title><?=$title?></title>
     <meta name="description" content="" />
@@ -33,9 +33,9 @@ data-template="vertical-menu-template-no-customizer"
     <link rel="stylesheet" href="<?=base_url().'assets/vendor/libs/toastr/toastr.css'?>" />
 </head>
 <body>
-	<div class="layout-wrapper layout-content-navbar">
-		<div class="layout-container">
-			<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
                     <a href="<?=base_url().'home'?>" class="app-brand-link">
                         <img width="150px" src="<?=base_url().'Waapi/waapi.es.png'?>">
@@ -136,123 +136,103 @@ data-template="vertical-menu-template-no-customizer"
                 </ul>
             </aside>
             <div class="layout-page">
-            	<nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
-            		<div class="container-fluid">
-            			<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            				<a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-            					<i class="bx bx-menu bx-sm"></i>
-            				</a>
-            			</div>
-            			<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            				<ul class="navbar-nav flex-row align-items-center ms-auto">
-            					<?php $this->load->view('options/locales') ?>
-            					<?php $this->load->view('options/userprofile') ?>
-            				</ul>
-            			</div>
-            		</div>
-            	</nav>
-            	<div class="content-wrapper">
-            		<div class="container-xxl flex-grow-1 container-p-y">
+                <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="container-fluid">
+                        <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                                <i class="bx bx-menu bx-sm"></i>
+                            </a>
+                        </div>
+                        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                            <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                <?php $this->load->view('options/locales') ?>
+                                <?php $this->load->view('options/userprofile') ?>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
                             <div class="col-lg-12 col-md-6 col-12 mb-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#AddUsers" aria-controls="AddUsers">Add Users</button>
-                                        <table id="example" class="table table-striped" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Image</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
-                                                    <th>Status</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach($users->result() as $u): ?>
-                                                    <tr>
-                                                        <td><?=$u->fullname?></td>
-                                                        <td>
-                                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" class="avatar avatar-xs pull-up" title="" data-bs-original-title="<?=$u->fullname?>">
-                                                                    <img src="<?=base_url().'assets/img/users/'.$u->image ?>" alt="Avatar" class="rounded-circle">
-                                                                </li>
-                                                            </ul>
-                                                        </td>
-                                                        <td><?=$u->email?></td>
-                                                        <td><?=$u->phone?></td>
-                                                        <td>
-                                                            <?php 
-                                                            if ($u->status == 1) { ?>
-                                                                <span class="badge bg-label-success me-1">Active</span>
-                                                            <?php }else{ ?>
-                                                                <span class="badge bg-label-error me-1">Nonaktif</span>
-                                                            <?php } ?>
-                                                        </td>
-                                                        <td>
-                                                            <a href="<?=base_url().'admin/users/detail/id='.$u->id?>" class="btn btn-icon btn-primary">
-                                                                <span class="tf-icons fa fa-eye"></span>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach;?>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Image</th>
-                                                    <th>Email</th>
-                                                    <th>Phone</th>
-                                                    <th>Status</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+                                        <form action="<?=base_url().'admin/edit_users'?>" method="POST" enctype="multipart/form-data">
+                                            <div class="mb-2">
+                                                <input type="text" name="id" value="<?=$id?>" hidden>
+                                                <label class="form-label">Fullname</label>
+                                                <input type="text" class="form-control" placeholder="Fullname" name="fullname" value="<?=$fullname?>" id="fullname">
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" class="form-control" placeholder="Username" name="username" value="<?=$username?>" id="username" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" placeholder="Email" name="email" value="<?=$email?>" id="email" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Phone</label>
+                                                <input type="text" class="form-control" placeholder="Phone" name="phone" value="<?=$phone?>" id="phone" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Role</label>
+                                                <select class="form-control" name="role">
+                                                    <option value="1">Administrator</option>
+                                                    <option value="2">Member</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Status</label>
+                                                <select class="form-control" name="status">
+                                                    <option value="1">Active</option>
+                                                    <option value="2">Deactive</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-2">
+                                                <label class="form-label">Created</label>
+                                                <input type="text" class="form-control" placeholder="Created" name="created" value="<?=$created?>" id="created" readonly>
+                                            </div>
+                                            <div class="mb-2">
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    <span class="tf-icons bx bx-check"></span>&nbsp; Save Change
+                                                </button>
+                                                <button class="btn btn-outline-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#DeleteUsers" aria-controls="DeleteUsers"><span class="tf-icons bx bx-x"></span>&nbsp; Delete</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-            		</div>
-                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="AddUsers" aria-labelledby="offcanvasBothLabel">
+                    </div>
+                    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="DeleteUsers" aria-labelledby="offcanvasBothLabel">
                         <div class="offcanvas-header">
-                            <h5 id="offcanvasBothLabel" class="offcanvas-title">Add Users</h5>
+                            <h5 id="offcanvasBothLabel" class="offcanvas-title">Delete users</h5>
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body my-auto mx-0 flex-grow-0">
-                            <form action="<?=base_url().'admin/add_users'?>" method="POST">
-                                <div class="mb-3">
-                                    <label class="form-label">Fullname</label>
-                                    <input type="text" name="fullname" class="form-control" placeholder="Fullname"/>
+                            <h3 style="color:red">Are You Sure to delete <?=$fullname?>?</h3>
+                            <form action="<?=base_url().'admin/delete_users'?>" method="POST">
+                                <div class="mb-3" hidden>
+                                    <label class="form-label">ID</label>
+                                    <input type="text" name="id" class="form-control" placeholder="id" value="<?=$id?>">
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Email</label>
-                                    <input type="email" name="email" class="form-control" placeholder="Email"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Phone</label>
-                                    <input type="text" name="phone" class="form-control" placeholder="Phone"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="password"/>
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary mb-2 d-grid w-100">Continue</button>
+                                    <button type="submit" class="btn btn-primary mb-2 d-grid w-100">Yes</button>
                                     <button type="button" class="btn btn-label-secondary d-grid w-100" data-bs-dismiss="offcanvas">Cancel</button>
                                 </div>
                             </form>
                         </div>
                     </div>
-            		<?php $this->load->view('options/footer') ?>
-            		<div class="content-backdrop fade"></div>
-            	</div>
+                    <?php $this->load->view('options/footer') ?>
+                    <div class="content-backdrop fade"></div>
+                </div>
             </div>
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
     </div>
-	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
+    <script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/bootstrap.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'?>"></script>

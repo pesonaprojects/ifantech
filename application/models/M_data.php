@@ -106,12 +106,25 @@ class M_data extends CI_Model
 		$result = $this->db->update('i_users');
 		return $result;
 	}
+	function EditUsers($data,$id)
+	{
+		$result = $this->db->set($data);
+		$result = $this->db->where('id',$id);
+		$result = $this->db->update('i_users');
+		return $result;
+	}
 
 	//delete
 	function HapusContact($id)
 	{
 		$result = $this->db->where('id',$id);
 		$result = $this->db->delete('i_contacts');
+		return $result;
+	}
+	function DeleteUsers($id)
+	{
+		$result = $this->db->where('id',$id);
+		$result = $this->db->delete('i_users');
 		return $result;
 	}
 } ?>
