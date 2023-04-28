@@ -53,9 +53,9 @@ ws.onmessage = (ev) => {
             break;
             case 'status':
             if(!data.data || (data.data && data.data == 'idle')){
-                $('#qrcode').html(`<b>Silahkan lakukan scan</b>`)
+                $('#qrcode').html(`<b>Waiting to Scan</b>`)
             }else if(data.data && data.data == 'running'){
-                $('#qrcode').html(`<b>terhubung ke whatsapp</b>`)
+                $('#qrcode').html(`<b>Connected to Server</b>`)
             }
             else{
                 $('#btn-scan').attr('disabled', '');
@@ -370,5 +370,30 @@ const handle = (ws) => {
             }
         ), null, 2)
         toastr.success('Message has been Sent');
+    });
+    $('#add-webhook').click(function (e) { 
+        e.preventDefault();
+        const uri = $('#input-webhook').val();
+        ws.send(JSON.stringify({
+            type: 'update-data',
+            data: {
+                webhook: uri
+            }
+        }))
+        toastr.success('Webhook has been Added, Please Refresh Page');
+        $('#add-webhook').hide();
+        $('#remove-webhook').show();
+    });
+    $('#remove-webhook').click(function (e) { 
+        e.preventDefault();
+        ws.send(JSON.stringify({
+            type: 'update-data',
+            data: {
+                webhook: null
+            }
+        }))
+        toastr.success('Webhook has been Remove, Please Refresh Page');
+        $('#add-webhook').show();
+        $('#remove-webhook').hide();
     });
 }

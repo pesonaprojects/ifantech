@@ -233,12 +233,14 @@ data-template="vertical-menu-template-no-customizer"
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Webhook</label>
-                                            <input type="text" class="form-control" placeholder="" readonly/>
+                                            <input type="text" id="input-webhook" name="id" class="form-control" placeholder=""/>
                                         </div>
                                         <div class="mb-3">
                                             <button type="button" name="btn-scan" id="btn-scan" class="btn btn-icon btn-primary" data-bs-toggle="modal" data-bs-target="#largeModal">
                                                 <span class="tf-icons bx bx-qr-scan" title="Scan QR"></span>
                                             </button>
+                                            <button id="add-webhook" class="btn btn-primary" type="submit">Add Webhook</button>
+                                            <button id="remove-webhook" class="btn btn-danger" type="submit" style="display: none;">remove</button>
                                         </div>
                                     </div>
                                 </div>
