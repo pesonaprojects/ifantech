@@ -323,12 +323,76 @@ echo $response;
                                                             </pre></code>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-media" role="tabpanel">
-                                                            <p>Media.</p>
-                                                            <p class="mb-0">Under Maintenance.</p>
+                                                            <p>Image.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "type" => "text",
+  "phonenumber" => "Receipt Number",
+  "msg" => "Your Message",
+  "mediaurl" => "https://waapi.es/mediatest/image.png",
+  "mediatype" => "image"
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-doc" role="tabpanel">
                                                             <p>Document.</p>
-                                                            <p class="mb-0">Under Maintenance.</p>
+                                                            <code><pre>
+$curl = curl_init();
+$dataarr = [
+  "deviceid" => "Your Device ID",
+  "type" => "text",
+  "phonenumber" => "Receipt Number",
+  "msg" => "Your Message",
+  "mediaurl" => "https://waapi.es/mediatest/doc.ai",
+  "mediatype" => "document"
+];
+$datajson = json_encode($dataarr, true);
+curl_setopt_array($curl, array(
+  CURLOPT_URL => $endpoint.'api/message/send',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $datajson,
+  CURLOPT_HTTPHEADER => array(
+    'Api-Key: Your Api-Key',
+    'Device-Key: Your Device-Key',
+    'Content-Type: application/json'
+  ),
+));
+
+$response = curl_exec($curl);
+
+curl_close($curl);
+echo $response;
+                                                            </pre></code>
                                                         </div>
                                                         <div class="tab-pane fade" id="navs-loc" role="tabpanel">
                                                             <p>Locations.</p>

@@ -31,6 +31,8 @@ class Message extends CI_Controller
 							$resp = $this->m_send->SendURL($params);
 						}elseif ($params['type'] == "button-copy") {
 							$resp = $this->m_send->SendCopy($params);
+						}elseif ($params['type'] == "media") {
+							$resp = $this->m_send->SendMedia($params);
 						}
 					}
 					json_output($respStatus,$resp);
