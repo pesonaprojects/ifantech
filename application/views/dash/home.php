@@ -151,29 +151,9 @@ data-template="vertical-menu-template-no-customizer"
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-12 mb-4">
-                                <div class="card h-100">
-                                    <div class="card-header">
-                                        <h3 class="card-title mb-2">Congratulations Ifantech!</h3>
-                                        <span class="d-block mb-4 text-nowrap">Best seller of the month</span>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row align-items-end">
-                                            <div class="col-6">
-                                                <h1 class="display-6 text-primary mb-2 pt-4 pb-1">$89k</h1>
-                                                <small class="d-block mb-3">You have done 57.6% <br />more sales today.</small>
-                                                <a href="javascript:;" class="btn btn-sm btn-primary">View sales</a>
-                                            </div>
-                                            <div class="col-6">
-                                                <img src="../../assets/img/illustrations/prize-light.png" width="140" height="150" class="rounded-start" alt="View Sales" data-app-light-img="illustrations/prize-light.png" data-app-dark-img="illustrations/prize-dark.png"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 col-12 mb-4">
+                            <div class="col-lg-12 col-12 mb-4">
                                 <div class="row">
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
+                                    <div class="col-6 col-md-3 col-lg-3 mb-4">
                                         <div class="card h-100">
                                             <div class="card-body text-center">
                                                 <div class="avatar mx-auto mb-2">
@@ -182,24 +162,16 @@ data-template="vertical-menu-template-no-customizer"
                                                     </span>
                                                 </div>
                                                 <span class="d-block text-nowrap" data-i18n="Contacts">Contacts</span>
-                                                <h2 class="mb-0">65</h2>
+                                                <?php
+                                                $userid = $this->session->userdata('userid');
+                                                $query = $this->db->query("SELECT * FROM i_contacts WHERE userid='$userid'");
+                                                $total =  $query->num_rows();
+                                                ?>
+                                                <h2 class="mb-0"><?=number_format($total)?></h2>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body text-center">
-                                                <div class="avatar mx-auto mb-2">
-                                                    <span class="avatar-initial rounded-circle bg-label-danger">
-                                                        <i class="bx bx-cart fs-4"></i>
-                                                    </span>
-                                                </div>
-                                                <span class="d-block text-nowrap" data-i18n="Scheduling">Schedule</span>
-                                                <h2 class="mb-0">40</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-3 col-lg-4 mb-4">
+                                    <div class="col-6 col-md-3 col-lg-3 mb-4">
                                         <div class="card h-100">
                                             <div class="card-body text-center">
                                                 <div class="avatar mx-auto mb-2">
@@ -208,11 +180,30 @@ data-template="vertical-menu-template-no-customizer"
                                                     </span>
                                                 </div>
                                                 <span class="d-block text-nowrap" data-i18n="Broadcast">Broadcast</span>
-                                                <h2 class="mb-0">40</h2>
+                                                <?php
+                                                $userid = $this->session->userdata('userid');
+                                                $query = $this->db->query("SELECT * FROM i_broadcast WHERE bc_users='$userid'");
+                                                $total =  $query->num_rows();
+                                                ?>
+                                                <h2 class="mb-0"><?=number_format($total)?></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-md-3 col-lg-3 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-body text-center">
+                                                <div class="avatar mx-auto mb-2">
+                                                    <span class="avatar-initial rounded-circle bg-label-primary">
+                                                        <i class="bx bx-devices fs-4"></i>
+                                                    </span>
+                                                </div>
+                                                <span class="d-block text-nowrap" data-i18n="Contacts">Device Status</span>
+                                                <h2 class="mb-0" id="status"></h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <img src="<?=base_url().'waapi/waapi.es.png'?>" width="100%">
                             </div>
                         </div>
                     </div>
@@ -223,19 +214,21 @@ data-template="vertical-menu-template-no-customizer"
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
         <div class="drag-target"></div>
+        <div id="host" data="<?=$host?>"></div>
+        <div id="deviceid" data="<?=$deviceid?>"></div>
     </div>
 	<script src="<?=base_url().'assets/vendor/libs/jquery/jquery.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/popper/popper.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/bootstrap.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/hammer/hammer.js'?>"></script>
-    <script src="<?=base_url().'assets/vendor/libs/i18n/i18n.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/typeahead-js/typeahead.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/js/menu.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/apex-charts/apexcharts.js'?>"></script>
     <script src="<?=base_url().'assets/js/main.js'?>"></script>
     <script src="<?=base_url().'assets/js/dashboards-ecommerce.js'?>"></script>
     <script src="<?=base_url().'assets/vendor/libs/toastr/toastr.js'?>"></script>
+    <script src="<?=base_url().'js/ws.js'?>"></script>
     <script type="text/javascript">
         toastr.options = {
             "closeButton": true,

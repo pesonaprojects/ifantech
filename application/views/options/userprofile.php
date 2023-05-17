@@ -18,8 +18,16 @@ $GetUsers = $this->db->get_where('i_users', ['id' => $userid])->row_array();
                         </div>
                     </div>
                     <div class="flex-grow-1">
-                        <span class="fw-semibold d-block lh-1">John Doe</span>
-                        <small>Admin</small>
+                        <span class="fw-semibold d-block lh-1"><?=$this->session->userdata('fullname')?></span>
+                        <?php
+                        $role = $this->session->userdata('role');
+                        if ($role == 1) {
+                            $datarole = "Administrator";
+                        } else {
+                            $datarole = "Member";
+                        }
+                        ?>
+                        <small><?=$datarole?></small>
                     </div>
                 </div>
             </a>

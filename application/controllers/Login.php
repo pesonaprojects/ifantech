@@ -24,6 +24,7 @@ class Login extends CI_Controller
 			$this->session->set_userdata(array(
 				'logged'	=> 'true',
 				'userid'    => $row->id,
+				'fullname'    => $row->fullname,
 				'username'  => $row->username,
 				'phone'  => $row->phone,
 				'role' => $row->role

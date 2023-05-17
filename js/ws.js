@@ -50,15 +50,14 @@ ws.onmessage = (ev) => {
             }
             $('#nomor-client').val(data.data.nomor);
             $('#name-client').val(data.data.name);
+            $('#status-client').val(data.data.status);
+            $('#status').text(data.data.status);
             break;
             case 'status':
             if(!data.data || (data.data && data.data == 'idle')){
                 $('#qrcode').html(`<b>Waiting to Scan</b>`)
             }else if(data.data && data.data == 'running'){
                 $('#qrcode').html(`<b>Connected to Server</b>`)
-            }
-            else{
-                $('#btn-scan').attr('disabled', '');
             }
             break;
             case 'upload-progress':

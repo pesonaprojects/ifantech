@@ -9,17 +9,5 @@
                 <span class="align-middle">English</span>
             </a>
         </li>
-        <li>
-            <a class="dropdown-item" href="javascript:void(0);" data-language="id">
-                <i class="fi fi-id fis rounded-circle fs-4 me-1"></i>
-                <span class="align-middle">Indonesian</span>
-            </a>
-        </li>
-        <li>
-            <a class="dropdown-item" href="javascript:void(0);" data-language="es">
-                <i class="fi fi-es fis rounded-circle fs-4 me-1"></i>
-                <span class="align-middle">Spanyol</span>
-            </a>
-        </li>
     </ul>
 </li>

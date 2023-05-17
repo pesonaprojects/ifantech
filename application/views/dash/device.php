@@ -232,6 +232,10 @@ data-template="vertical-menu-template-no-customizer"
                                             <input type="text" class="form-control" value="" id="name-client" name="name-client" readonly/>
                                         </div>
                                         <div class="mb-3">
+                                            <label class="form-label">status Whatsapp</label>
+                                            <input type="text" class="form-control" value="" id="status-client" name="status-client" readonly/>
+                                        </div>
+                                        <div class="mb-3">
                                             <label class="form-label">Webhook</label>
                                             <input type="text" id="input-webhook" name="id" class="form-control" placeholder=""/>
                                         </div>
