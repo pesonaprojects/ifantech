@@ -203,7 +203,7 @@ data-template="vertical-menu-template-no-customizer"
                                         </div>
                                     </div>
                                 </div>
-                                <img src="<?=base_url().'waapi/waapi.es.png'?>" width="100%">
+                                <img src="<?=base_url().'Waapi/waapi.es.png'?>" width="100%">
                             </div>
                         </div>
                     </div>

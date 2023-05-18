@@ -126,8 +126,6 @@ class Admin extends CI_Controller {
 						$this->db->set('web_name',$web_name);
 						$this->db->set('web_logo',$weblogoname);
 						$this->db->set('web_icon',$webiconname);
-						$this->db->set('web_wa_host',$web_wa_admin);
-						$this->db->set('web_wa_id',$web_wa_id);
 						$this->db->where('id', 1);
 						$this->db->update('i_web');
 						$url = base_url().'admin/settings';
@@ -141,8 +139,6 @@ class Admin extends CI_Controller {
 				}else{
 					$this->db->set('web_name',$web_name);
 					$this->db->set('web_logo',$weblogoname);
-					$this->db->set('web_wa_host',$web_wa_admin);
-					$this->db->set('web_wa_id',$web_wa_id);
 					$this->db->where('id', 1);
 					$this->db->update('i_web');
 					$url = base_url().'admin/settings';
@@ -161,8 +157,6 @@ class Admin extends CI_Controller {
 					$webiconname = $web_icon['file_name'];
 					$this->db->set('web_name',$web_name);
 					$this->db->set('web_icon',$webiconname);
-					$this->db->set('web_wa_host',$web_wa_admin);
-					$this->db->set('web_wa_id',$web_wa_id);
 					$this->db->where('id', 1);
 					$this->db->update('i_web');
 					$url = base_url().'admin/settings';
@@ -175,8 +169,6 @@ class Admin extends CI_Controller {
 				}
 			}else{
 				$this->db->set('web_name',$web_name);
-				$this->db->set('web_wa_host',$web_wa_admin);
-				$this->db->set('web_wa_id',$web_wa_id);
 				$this->db->where('id', 1);
 				$this->db->update('i_web');
 				$url = base_url().'admin/settings';
