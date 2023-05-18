@@ -109,8 +109,6 @@ class Admin extends CI_Controller {
 	public function setupweb()
 	{
 		$web_name = $this->input->post('web_name');
-		$web_wa_admin = $this->input->post('web_wa_admin');
-		$web_wa_id = 'waapi';
 		$config['upload_path']          = './assets/img/website/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['encrypt_name'] = TRUE;
